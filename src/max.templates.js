@@ -196,7 +196,7 @@ max.templates = function() {
         {{/filters}}\
             '),
         mainUI: Hogan.compile('\
-<div id="maxui-container">\
+<div id="maxui-container" class="{{showMaxUIClass}}">\
         {{#username}}\
          <div id="maxui-mainpanel">\
            <div id="maxui-conversations" style="height:0px; {{showConversations}}">\

@@ -223,6 +223,7 @@
             var params = {
                 username: maxui.settings.username,
                 literals: maxui.settings.literals,
+                showMaxUIClass: showCT ? 'maxui-chat' : 'maxui-activity',
                 showConversations: showCT ? 'display:block;' : 'display:none;',
                 showConversationsToggle: toggleCT ? 'display:block;' : 'display:none;',
                 showTimeline: showTL ? 'display:block;' : 'display:none;',

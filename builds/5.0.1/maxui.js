@@ -8197,7 +8197,7 @@ max.templates = function() {
         {{/filters}}\
             '),
         mainUI: Hogan.compile('\
-<div id="maxui-container">\
+<div id="maxui-container" class="{{showMaxUIClass}}">\
         {{#username}}\
          <div id="maxui-mainpanel">\
            <div id="maxui-conversations" style="height:0px; {{showConversations}}">\
@@ -10046,6 +10046,7 @@ MaxClient.prototype.unflagActivity = function(activityid, callback) {
             var params = {
                 username: maxui.settings.username,
                 literals: maxui.settings.literals,
+                showMaxUIClass: showCT ? 'maxui-chat' : 'maxui-activity',
                 showConversations: showCT ? 'display:block;' : 'display:none;',
                 showConversationsToggle: toggleCT ? 'display:block;' : 'display:none;',
                 showTimeline: showTL ? 'display:block;' : 'display:none;',
