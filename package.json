@@ -1,0 +1,34 @@
+
+{
+  "name": "max.ui5.js",
+  "description": "MAX javascript widget",
+  "version": "5.0.1",
+  "homepage": "https://github.com/UPCnet/max.ui5.js",
+  "author": {
+    "name": "UPCnet",
+    "url": "https://github.com/UPCnet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/UPCnet/max.ui5.js.git"
+  },
+  "devDependencies": {
+    "lodash": "",
+    "dalekjs": "",
+    "underscore.string": "",
+    "grunt-contrib-concat": "",
+    "grunt-contrib-copy": "",
+    "grunt-contrib-cssmin": "",
+    "grunt-contrib-jshint": "",
+    "grunt-contrib-less": "",
+    "grunt-contrib-uglify": "",
+    "grunt-contrib-watch": "",
+    "grunt-dalek": "",
+    "grunt-jsbeautifier": "",
+    "js-beautify": "latest",
+    "grunt-text-replace": ""
+    },
+  "keywords": [
+    "max"
+  ]
+}

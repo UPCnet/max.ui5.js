@@ -1,0 +1,18 @@
+      <span class="maxui-avatar maxui-big">
+          <img src="{{avatar}}">
+      </span>
+      <div id="maxui-newactivity-box">
+           <div class="maxui-wrapper">
+               <textarea class="maxui-empty maxui-text-input" data-literal="{{textLiteral}}">{{textLiteral}}</textarea>
+               <div class="maxui-error-box"></div>
+           </div>
+
+            {{#showSubscriptionList}}
+            <select id="maxui-subscriptions">
+              {{#subscriptionList}}
+                <option value="{{hash}}">{{displayname}}</option>
+              {{/subscriptionList}}
+            </select>
+            {{/showSubscriptionList}}
+           <input disabled="disabled" type="button" class="maxui-button maxui-disabled" value="{{buttonLiteral}}">
+      </div>

@@ -1,0 +1,38 @@
+#maxui-container {
+    .maxui-predictive {
+        margin-top: 50px;
+        margin-left: 10px;
+        width:80%;
+        background-color: @mainBackgroundColor;
+        position:absolute;
+        z-index: 100;
+        border: 1px darken(@borderColor, 10%) solid;
+        .mm-borderRadius(3px);
+
+        ul {
+           list-style: none;
+            margin:0px;
+            padding:1px;
+
+            .maxui-prediction {
+                position:relative;
+                height: 18px;
+                padding: 2px 0px;
+                cursor:pointer;
+                &.selected {
+                    background-color: @selectedBackgroundColor;
+                }
+                img {
+                    height:18px;
+                    margin-right: 5px;
+                    .mm-borderRadius(11px);
+                }
+                span {
+                    position:absolute;
+                    top:3px;
+                    left:25px;
+                }
+            }
+        }
+    }
+}

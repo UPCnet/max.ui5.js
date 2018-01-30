@@ -1,0 +1,51 @@
+<div id="maxui-{{panelID}}" {{#canManage}}class="maxui-owner"{{/canManage}}>
+  <span class="maxui-avatar maxui-big"><img src="{{conversationAvatarURL}}"></span>
+  <div id="maxui-conversation-displayname-edit">
+      <input type="text" class="maxui-displayname" value="{{displayName}}"/>
+      <i class="maxui-icon-cancel-circled"></i>
+      <i class="maxui-icon-ok-circled"></i>
+  </div>
+  <span class="maxui-displayname">{{displayName}}</span>
+  <span class="maxui-published">{{literals.conversations_info_created}} {{published}}</span>
+  <div class="maxui-participants">
+    <h4>{{literals.conversations_info_participants}}</h4>
+    <ul>
+      {{#participants}}
+      <li class="maxui-participant {{#owner}}maxui-owner{{/owner}}" data-username="{{username}}">
+          <span class="maxui-avatar maxui-little"><img src="{{avatarURL}}"></span>
+          <span class="maxui-displayname">{{displayName}}
+              <i class="maxui-conversation-user-action maxui-icon-trash" {{^owner}}title="{{literals.conversations_info_kick_message_1}} {{displayName}} {{literals.conversations_info_kick_message_2}}"{{/owner}}></i>
+              <i class="maxui-conversation-user-action maxui-icon-crown{{^owner}}-plus{{/owner}}" {{^owner}}title="{{literals.conversations_info_transfer_message_1}} {{displayName}} {{literals.conversations_info_transfer_message_2}}"{{/owner}}></i>
+              <div class="maxui-conversation-transfer-to maxui-conversation-confirmation">
+                  <i class="maxui-icon-cancel-circled"></i>
+                  <i class="maxui-icon-ok-circled"></i>
+              </div>
+              <div class="maxui-conversation-kick-user maxui-conversation-confirmation">
+                  <i class="maxui-icon-cancel-circled"></i>
+                  <i class="maxui-icon-ok-circled"></i>
+              </div>
+          </span>
+          <span class="maxui-username">{{username}}</span>
+      </li>
+      {{/participants}}
+    </ul>
+    {{#canAdd}}
+    <div id="maxui-new-participant">
+        <i class="maxui-icon-user-add"/>
+        <input type="text" class="maxui-text-input maxui-empty"/>
+        <div id="maxui-conversation-predictive" class="maxui-predictive" style="display:none;"><ul></ul></div>
+    </div>
+    {{/canAdd}}
+    </div>
+    <div id="maxui-conversation-leave">
+      <input type="button" class="maxui-button maxui-button-red maxui-button-wide" value="{{literals.conversations_info_leave}}">
+  </div>
+  <div id="maxui-conversation-delete">
+      <input type="button" class="maxui-button maxui-button-red maxui-button-wide" value="{{literals.conversations_info_delete}}">
+      <div class="maxui-help">
+          <p><b>{{literals.conversations_info_delete_warning}}</b> {{literals.conversations_info_delete_help}}</p>
+          <button class="maxui-button maxui-button-red maxui-confirmation-cancel">{{literals.cancel}}</button>
+          <button class="maxui-button maxui-button-green maxui-confirmation-ok">{{literals.delete}}</button>
+      </div>
+  </div>
+</div>
