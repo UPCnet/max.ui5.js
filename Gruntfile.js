@@ -394,7 +394,9 @@ module.exports = function (grunt) {
                 },
 
                 files: {
-                    'dist/maxui.min.js': ['dist/maxui.js']
+                    'dist/maxui.min.js': ['dist/maxui.js'],
+                    'dist/maxuichat.min.js': ['dist/maxuichat.js'],
+                    'dist/maxuiactivity.min.js': ['dist/maxuiactivity.js']
                 }
             }
         },
