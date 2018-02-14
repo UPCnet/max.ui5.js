@@ -55,7 +55,7 @@ module.exports = function (grunt) {
                           'src/templates/conversationSettings.mustache',
                           'src/templates/participant.mustache',
                           'src/templates/participants.mustache',
-                          'src/templates/postBox.mustache',
+                          'src/templates/postBoxChat.mustache',
                           'src/templates/predictive.mustache',
                           'src/templates/filters.mustache',
                           'src/templates/message.mustache',
