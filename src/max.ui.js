@@ -900,10 +900,6 @@
                 jq(button).attr('class', 'maxui-button maxui-disabled');
                 jq(this).attr('class', 'maxui-empty maxui-text-input');
                 jq(this).removeAttr('title');
-                jq('.maxui-error-box').width(jq(this).width() - 4);
-                jq('.maxui-error-box').animate({
-                    'bottom': 0
-                }, 200);
             } else {
                 if (maxui.settings.canwrite && !options.ignore_button) {
                     jq(button).removeAttr('disabled');
