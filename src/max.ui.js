@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.9';
+        maxui.version = '5.0.10';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -1274,7 +1274,7 @@
             if (!maxui.settings.disableTimeline) {
                 $timelinebutton.show();
             }
-            maxui.conversations.scrollbar.setHeight(height - 45);
+            maxui.conversations.scrollbar.setHeight(height - 75);
             maxui.conversations.scrollbar.setTarget('#maxui-conversations #maxui-conversations-list');
             $postbox.show();
         }
