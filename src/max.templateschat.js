@@ -210,6 +210,20 @@ max.templates = function() {
         \
             <div id="maxui-newactivity-chat" {{#hidePostbox}}style="display:none;"{{/hidePostbox}}>\
             </div>\
+        \
+            <div id="maxui-overlay-background" class="maxui-overlay">\
+            </div>\
+        \
+            <div id="maxui-overlay-wrapper" class="maxui-overlay">\
+               <div id="maxui-overlay-panel">\
+                   <div id="maxui-overlay-header">\
+                        <h3 id="maxui-overlay-title">I\'m a overlay</h3>\
+                        <i class="maxui-close maxui-icon-cancel"/>\
+                   </div>\
+                   <div id="maxui-overlay-content">\
+                   </div>\
+               </div>\
+           </div>\
           </div>\
          </div>\
         {{/username}}\
