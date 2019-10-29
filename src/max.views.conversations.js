@@ -674,11 +674,18 @@ var max = max || {};
                     return conversation;
                 }
             });
+            var $menuBubble = jQuery('#menusup .fa-comment');
             if (conversations_with_unread_messages.length > 0) {
                 $showconversations.text(conversations_with_unread_messages.length);
                 $showconversations.removeClass('maxui-hidden');
+                if ($menuBubble.length > 0) {
+                    $menuBubble.addClass('flicker');
+                }
             } else {
                 $showconversations.addClass('maxui-hidden');
+                if ($menuBubble.length > 0) {
+                    $menuBubble.removeClass('flicker');
+                }
             }
         };
         MaxConversations.prototype.ReceiveMessage = function(message) {
