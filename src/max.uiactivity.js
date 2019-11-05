@@ -304,9 +304,9 @@
             jq(this).closest('.maxui-activity').find('.maxui-comments').toggle(200);
         });
         //Assign Username and avatar clicking via delegating the click to the activities container
-        jq('#maxuiactivity-widget-container #maxui-activities').on('click', '.maxui-actor', function(event) {
+        jq('#maxuiactivity-widget-container #maxui-activities').on('click', '.maxui-filter-actor', function(event) {
             event.preventDefault();
-            var actor = jq(this).find('.maxui-username').text();
+            var actor = jq(this).parent().find('.maxui-username').text();
             maxui.addFilterActivity({
                 type: 'actor',
                 value: actor

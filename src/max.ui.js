@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.12';
+        maxui.version = '5.0.13';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -304,9 +304,9 @@
             jq(this).closest('.maxui-activity').find('.maxui-comments').toggle(200);
         });
         //Assign Username and avatar clicking via delegating the click to the activities container
-        jq('#maxui-activities').on('click', '.maxui-actor', function(event) {
+        jq('#maxui-activities').on('click', '.maxui-filter-actor', function(event) {
             event.preventDefault();
-            var actor = jq(this).find('.maxui-username').text();
+            var actor = jq(this).parent().find('.maxui-username').text();
             maxui.addFilter({
                 type: 'actor',
                 value: actor
