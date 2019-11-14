@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.13';
+        maxui.version = '5.0.14';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -1533,6 +1533,7 @@
                 via: generator,
                 fileDownload: activity.object.objectType === 'file',
                 filename: activity.object.filename,
+                portalURL: window.PORTAL_URL,
                 canViewComments: canCommentActivity || activity.replies.length > 0,
                 canWriteComment: canCommentActivity
             };
@@ -1617,6 +1618,7 @@
                 date: maxui.utils.formatDate(comment.published, maxui.language),
                 text: maxui.utils.formatText(comment.content),
                 avatarURL: maxui.settings.avatarURLpattern.format(comment.actor.username),
+                portalURL: window.PORTAL_URL,
                 canDeleteComment: comment.deletable
             };
             // Render the comment template and append it at the end of the rendered comments
