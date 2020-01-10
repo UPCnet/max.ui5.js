@@ -1,10 +1,12 @@
-/*global Hogan */ /*jshint multistr: true */
+/*global Hogan *//*jshint multistr: true */
 /**
- * @fileoverview Provides hogan compiled templates
- *               ready to render.
- */
+* @fileoverview Provides hogan compiled templates
+*               ready to render.
+*/
 'use strict';
+
 var max = max || {};
+
 max.templates = function() {
     var templates = {
         conversation: Hogan.compile('\
@@ -19,10 +21,8 @@ max.templates = function() {
                     </div>\
                 </div>\
                 <div class="maxui-actor">\
-                    <a class="maxui-filter-actor" href="#">\
-                        <span class="maxui-avatar maxui-big"><img src="{{avatarURL}}"></span>\
-                        <span class="maxui-displayname">{{displayName}}</span>\
-                    </a>\
+                      <a href="#"><span class="maxui-avatar maxui-big"><img src="{{avatarURL}}"></span>\
+                      <span class="maxui-displayname">{{displayName}}</span></a>\
                 </div>\
                 <div>\
                     <p class="maxui-body">{{&text}}</p>\
@@ -212,20 +212,6 @@ max.templates = function() {
         \
             <div id="maxui-newactivity-chat" {{#hidePostbox}}style="display:none;"{{/hidePostbox}}>\
             </div>\
-        \
-            <div id="maxui-overlay-background" class="maxui-overlay">\
-            </div>\
-        \
-            <div id="maxui-overlay-wrapper" class="maxui-overlay">\
-               <div id="maxui-overlay-panel">\
-                   <div id="maxui-overlay-header">\
-                        <h3 id="maxui-overlay-title">I\'m a overlay</h3>\
-                        <i class="maxui-close maxui-icon-cancel"/>\
-                   </div>\
-                   <div id="maxui-overlay-content">\
-                   </div>\
-               </div>\
-           </div>\
           </div>\
          </div>\
         {{/username}}\

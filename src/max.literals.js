@@ -169,7 +169,7 @@ max.literals = function(language) {
         'post_permission_unauthorized': 'No estàs autoritzat a publicar en aquest contexte',
         'post_permission_not_here': "No estas citant a @ningú",
         'post_permission_not_enough_participants': "Has d'afegir participants",
-        'post_permission_missing_displayName': "Tens que posar nom al xat",
+        'post_permission_missing_displayName': "Has de posar nom al xat",
         'delete_activity_confirmation': "Estàs segur?",
         'delete_activity_delete': "Esborra",
         'delete_activity_cancel': "No ho toquis!",
