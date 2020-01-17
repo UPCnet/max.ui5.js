@@ -2,10 +2,13 @@
     <div class="maxui-activity-content">
        <span class="maxui-publisheddate">{{date}}</span>
        <div class="maxui-actor">
-           <a href="#">
+           <a href="/profile/{{actor.username}}" title="{{literals.open_profile}}">
                <span class="maxui-avatar maxui-little"><img src="{{avatarURL}}"></span>
-               <span class="maxui-displayname">{{actor.displayName}}</span></a>
-             <span class="maxui-username">{{actor.username}}</span>
+            </a>
+            <a class="maxui-filter-actor" href="#">
+               <span class="maxui-displayname">{{actor.displayName}}</span>
+            </a>
+            <span class="maxui-username">{{actor.username}}</span>
        </div>
        <div>
            <p class="maxui-body">{{&text}}</p>
