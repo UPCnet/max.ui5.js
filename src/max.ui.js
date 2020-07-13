@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.21';
+        maxui.version = '5.0.22';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -1586,8 +1586,16 @@
         }
         _.each(images_to_render, function(activity, index, list) {
             maxui.maxClient.getMessageImage('/activities/{0}/image/thumb'.format(activity.id), function(encoded_image_data) {
-                var imagetag = '<img class="maxui-embedded" alt="" src="data:image/png;base64,{0}" />'.format(encoded_image_data);
+                var imagetag = '<img class="maxui-embedded fullImage" alt="" src="data:image/png;base64,{0}" />'.format(encoded_image_data);
                 jq('.maxui-activity#{0} .maxui-activity-message .maxui-body'.format(activity.id)).after(imagetag);
+                jq('.maxui-activity#{0} .maxui-activity-message img.fullImage'.format(activity.id)).on('click', function(activity) {
+                    maxui.maxClient.getMessageImage(activity.object.fullURL, function(encoded_image_data) {
+                        var image = new Image();
+                        image.src = "data:image/png;base64," + encoded_image_data;
+                        var w = window.open("");
+                        w.document.write(image.outerHTML);
+                    });
+                });
             });
         });
     };
