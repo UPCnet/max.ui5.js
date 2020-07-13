@@ -24,7 +24,7 @@
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
-  margin-right: .2em;
+  margin-right: 0.2em;
   text-align: center;
   /* opacity: .8; */
   /* For safety - reset parent styles, that can break glyph codes*/
@@ -34,7 +34,7 @@
   line-height: 1em;
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
-  margin-left: .2em;
+  margin-left: 0.2em;
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
   /* Uncomment for 3D effect */
@@ -253,7 +253,7 @@
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
-  margin-right: .2em;
+  margin-right: 0.2em;
   text-align: center;
   /* opacity: .8; */
   /* For safety - reset parent styles, that can break glyph codes*/
@@ -263,7 +263,7 @@
   line-height: 1em;
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
-  margin-left: .2em;
+  margin-left: 0.2em;
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
   /* Uncomment for 3D effect */
@@ -393,7 +393,7 @@
 }
 #maxui-container a.maxui-action:before {
   font-size: 12px;
-  margin-right: .22em;
+  margin-right: 0.22em;
 }
 #maxui-container a.maxui-action:hover {
   color: #565656;
@@ -570,6 +570,9 @@
   display: inline-block;
   cursor: pointer;
 }
+#maxui-container img.maxui-embedded.fullImage {
+  cursor: pointer;
+}
 #maxui-container .maxui-message {
   /* Message balloons style defeiniton, distinct for
            logged user and rest of users of a conversation
@@ -580,9 +583,6 @@
   -webkit-border-radius: 10px;
   border-radius: 10px;
   margin: 5px 0px;
-}
-#maxui-container .maxui-message img.maxui-embedded.fullImage {
-  cursor: pointer;
 }
 #maxui-container .maxui-message.maxui-user-me {
   text-align: right;
@@ -948,7 +948,7 @@
 #maxui-container #maxui-new-participants .maxui-filter .maxui-close,
 #maxui-container #maxui-search-filters .maxui-filter .maxui-close {
   padding: 0 2px 0 4px;
-  opacity: .8;
+  opacity: 0.8;
   filter: alpha(opacity=80);
   position: relative;
   top: 3px;
@@ -1147,6 +1147,9 @@
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
+}
+#maxui-container img.maxui-embedded.fullImage {
+  cursor: pointer;
 }
 #maxui-container #maxui-activities .maxui-activity {
   position: relative;
@@ -1389,7 +1392,7 @@
 }
 #maxui-container #maxui-mainpanel #maxui-newactivity #maxui-newactivity-box textarea.maxui-text-input,
 #maxui-container #maxui-mainpanel #maxui-newactivity-chat #maxui-newactivity-box textarea.maxui-text-input {
-  z-index: 8;
+  z-index: 50;
 }
 #maxui-container #maxui-mainpanel #maxui-newactivity #maxui-newactivity-box .maxui-error-box,
 #maxui-container #maxui-mainpanel #maxui-newactivity-chat #maxui-newactivity-box .maxui-error-box {
@@ -1403,7 +1406,7 @@
   position: absolute;
   bottom: 0px;
   margin-bottom: 0px;
-  z-index: 7;
+  z-index: 49;
   text-align: left;
   padding: 4px 5px;
   text-shadow: none;
@@ -1675,12 +1678,12 @@
   padding-top: 9px;
   font-size: 16px;
   color: #ddd;
-  -o-transition: .5s;
-  -ms-transition: .5s;
-  -moz-transition: .5s;
-  -webkit-transition: .5s;
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -webkit-transition: 0.5s;
   /* ...and now for the proper property */
-  transition: .5s;
+  transition: 0.5s;
 }
 #maxui-container #maxui-mainpanel #maxui-conversation-settings-panel .maxui-participants > ul .maxui-participant .maxui-icon-crown:hover,
 #maxui-container #maxui-mainpanel #maxui-conversation-settings-panel .maxui-participants > ul .maxui-participant .maxui-icon-crown-plus:hover,

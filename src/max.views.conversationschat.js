@@ -445,7 +445,7 @@ var max = max || {};
                     self.maxui.maxClient.getMessageImage('/messages/{0}/image/thumb'.format(message.uuid), function(encoded_image_data) {
                         var imagetag = '<img class="maxui-embedded" alt="" src="data:image/png;base64,{0}" />'.format(encoded_image_data);
                         jq('#maxuichat-widget-container .maxui-message#{0} .maxui-body'.format(message.uuid)).after(imagetag);
-                        jq('.maxui-message#{0} img.fullImage'.format(message.uuid)).on('click', function(message) {
+                        jq('.maxui-message#{0} img.fullImage'.format(message.uuid)).on('click', function() {
                             self.maxui.maxClient.getMessageImage(message.object.fullURL, function(encoded_image_data) {
                                 var image = new Image();
                                 image.src = "data:image/png;base64," + encoded_image_data;
