@@ -1392,7 +1392,7 @@
 }
 #maxui-container #maxui-mainpanel #maxui-newactivity #maxui-newactivity-box textarea.maxui-text-input,
 #maxui-container #maxui-mainpanel #maxui-newactivity-chat #maxui-newactivity-box textarea.maxui-text-input {
-  z-index: 50;
+  z-index: 8;
 }
 #maxui-container #maxui-mainpanel #maxui-newactivity #maxui-newactivity-box .maxui-error-box,
 #maxui-container #maxui-mainpanel #maxui-newactivity-chat #maxui-newactivity-box .maxui-error-box {
@@ -1406,7 +1406,7 @@
   position: absolute;
   bottom: 0px;
   margin-bottom: 0px;
-  z-index: 49;
+  z-index: 7;
   text-align: left;
   padding: 4px 5px;
   text-shadow: none;
