@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.24';
+        maxui.version = '5.0.25';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -1509,6 +1509,10 @@
             if (activity.contexts) {
                 canCommentActivity = maxui.canCommentActivity(activity.contexts[0].url);
             }
+            var likesUsernames = [];
+            for (var like in activity.likes) {
+                likesUsernames.push(activity.likes[like].username);
+            }
             var params = {
                 id: activity.id,
                 actor: activity.actor,
@@ -1525,6 +1529,7 @@
                 likes: activity.likesCount ? activity.likesCount : 0,
                 showLikesCount: maxui.currentSortOrder === 'likes',
                 liked: activity.liked,
+                likesUsernames: likesUsernames.join('&#10;'),
                 flagged: activity.flagged,
                 avatarURL: avatar_url,
                 publishedIn: contexts,
