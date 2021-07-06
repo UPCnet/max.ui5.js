@@ -462,7 +462,7 @@
             var $likes_count = $likes.children('strong');
             var likesUsernames = [];
             if ($likes.attr('title') !== "") {
-                likesUsernames = $likes.attr('title').split('&#13;');
+                likesUsernames = $likes.attr('title').split('\n');
             }
             if (liked) {
                 maxui.maxClient.unlikeActivity(activityid, function(event) {
@@ -472,14 +472,14 @@
                 likesUsernames = jq.grep(likesUsernames, function(value) {
                     return value !== maxui.settings.username;
                 });
-                $likes.attr('title', likesUsernames.join('&#13;'));
+                $likes.attr('title', likesUsernames.join('\n'));
             } else {
                 maxui.maxClient.likeActivity(activityid, function(event) {
                     $likes.toggleClass('maxui-liked', true);
                 });
                 $likes_count.text(parseInt($likes_count.text(), 10) + 1);
                 likesUsernames.push(maxui.settings.username);
-                $likes.attr('title', likesUsernames.join('&#13;'));
+                $likes.attr('title', likesUsernames.join('\n'));
             }
         });
         //Toggle flagged status via delegating the click to the activities container
@@ -1539,7 +1539,7 @@
                 likes: activity.likesCount ? activity.likesCount : 0,
                 showLikesCount: maxui.currentSortOrder === 'likes',
                 liked: activity.liked,
-                likesUsernames: likesUsernames.join('&#13;'),
+                likesUsernames: likesUsernames.join('\n'),
                 flagged: activity.flagged,
                 avatarURL: avatar_url,
                 publishedIn: contexts,
