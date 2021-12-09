@@ -1,4 +1,3 @@
-
 {
   "name": "max.ui5.js",
   "description": "MAX javascript widget",
@@ -27,7 +26,7 @@
     "grunt-jsbeautifier": "",
     "js-beautify": "latest",
     "grunt-text-replace": ""
-    },
+  },
   "keywords": [
     "max"
   ]

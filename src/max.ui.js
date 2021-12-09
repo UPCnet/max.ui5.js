@@ -39,7 +39,8 @@
             'maxTalkURL': "",
             'generator': "",
             'domain': "",
-            'showSubscriptionList': false
+            'showSubscriptionList': false,
+            'showLikes': true
         };
         // extend defaults with user-defined settings
         maxui.settings = jq.extend(defaults, options);
@@ -461,7 +462,7 @@
             var liked = $likes.hasClass('maxui-liked');
             var $likes_count = $likes.children('strong');
             var likesUsernames = [];
-            if ($likes.attr('title') !== "") {
+            if ($likes.attr('title') && $likes.attr('title') !== "") {
                 likesUsernames = $likes.attr('title').split('\n');
             }
             if (liked) {
@@ -472,14 +473,18 @@
                 likesUsernames = jq.grep(likesUsernames, function(value) {
                     return value !== maxui.settings.username;
                 });
-                $likes.attr('title', likesUsernames.join('\n'));
+                if (maxui.settings.showLikes) {
+                    $likes.attr('title', likesUsernames.join('\n'));
+                }
             } else {
                 maxui.maxClient.likeActivity(activityid, function(event) {
                     $likes.toggleClass('maxui-liked', true);
                 });
                 $likes_count.text(parseInt($likes_count.text(), 10) + 1);
                 likesUsernames.push(maxui.settings.username);
-                $likes.attr('title', likesUsernames.join('\n'));
+                if (maxui.settings.showLikes) {
+                    $likes.attr('title', likesUsernames.join('\n'));
+                }
             }
         });
         //Toggle flagged status via delegating the click to the activities container
@@ -1538,6 +1543,7 @@
                 favorited: activity.favorited,
                 likes: activity.likesCount ? activity.likesCount : 0,
                 showLikesCount: maxui.currentSortOrder === 'likes',
+                showLikes: maxui.settings.showLikes,
                 liked: activity.liked,
                 likesUsernames: likesUsernames.join('\n'),
                 flagged: activity.flagged,
@@ -1718,6 +1724,7 @@
         if (arguments.length > 1) {
             var callback = arguments[1];
             func_params.push(function(items) {
+                maxui.settings.showLikes = window._MAXUI.showLikes;
                 // Determine write permission, granted by default if we don't find a restriction
                 maxui.settings.canwrite = true;
                 // If we don't have a context, we're in timeline, so we can write
