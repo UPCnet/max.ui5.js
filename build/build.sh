@@ -49,9 +49,6 @@ touch $FILENAME
 
 comment "MAX UI v.$VERSION"
 
-comment "sockjs-0.3.min.js"
-cat ../libs/sockjs-0.3.min.js >> $FILENAME
-
 comment "stomp.js"
 cat stomp-min.js >> $FILENAME
 
@@ -101,9 +98,6 @@ fi
 touch $FILENAME_DEBUG
 
 comment_debug "MAX UI v.$VERSION DEBUG"
-
-comment_debug "sockjs-0.3.min.js"
-cat ../libs/sockjs-0.3.min.js >> $FILENAME_DEBUG
 
 comment_debug "stomp.js"
 cat stomp-min.js >> $FILENAME_DEBUG

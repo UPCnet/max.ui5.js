@@ -1,4 +1,3 @@
-/*global SockJS */
 /*global Stomp */
 /*global uuid */
 /**
@@ -36,7 +35,7 @@ var max = max || {};
         }
         self.login += self.maxui.settings.username;
         // Start socket
-        self.ws = new SockJS(self.stompServer);
+        self.ws = Stomp.client(self.stompServer);
         self.bindings = [];
         self.specification = {
             uuid: {
@@ -193,8 +192,8 @@ var max = max || {};
         var interval = setInterval(function(event) {
             if (!self.active && current_try <= self.max_retries) {
                 self.maxui.logger.debug('Connection retry #{0}'.format(current_try), self.logtag);
-                self.ws.close();
-                self.ws = new SockJS(self.maxui.settings.maxTalkURL);
+                self.ws.disconnect();
+                self.ws = Stomp.client(self.maxui.settings.maxTalkURL);
                 self.connect();
             } else {
                 if (!self.active) {

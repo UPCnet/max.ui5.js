@@ -5,7 +5,7 @@
     "language": "ca",
     "maxServerURL": "http://localhost:8081",
     "maxServerURLAlias": "http://localhost:8081",
-    "maxTalkURL": "http://localhost:8081/stomp",
+    "maxTalkURL": "ws://localhost:8081/ws",
     "oAuthGrantType": "password",
     "oAuthToken": "xTGrQepANsVQrtudDGmc8h2UxdchXRXS",
     "profileURLpattern": "#",
