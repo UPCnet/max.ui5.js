@@ -186,7 +186,7 @@ var max = max || {};
     MaxMessaging.prototype.start = function() {
         var self = this;
         self.maxui.logger.info('Connecting ...', self.logtag);
-        self.connect();
+        self.ws.connect();
         var current_try = 1;
         // Retry connection if initial failed
         var interval = setInterval(function(event) {
@@ -194,7 +194,7 @@ var max = max || {};
                 self.maxui.logger.debug('Connection retry #{0}'.format(current_try), self.logtag);
                 self.ws.disconnect();
                 self.ws = Stomp.client(self.maxui.settings.maxTalkURL);
-                self.connect();
+                self.ws.connect();
             } else {
                 if (!self.active) {
                     self.maxui.logger.error('Connection failure after {0} reconnect attempts'.format(self.max_retries), self.logtag);
