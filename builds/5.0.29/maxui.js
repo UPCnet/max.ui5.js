@@ -7535,7 +7535,6 @@ MaxClient.prototype.unflagActivity = function(activityid, callback) {
         var defaults = {
             'maxRequestsAPI': 'jquery',
             'maxServerURL': 'https://max.upc.edu',
-            'maxServerURLSTOMP': 'ws://max.upc.edu',
             'readContext': undefined,
             'writeContexts': [],
             'activitySource': 'timeline',
@@ -7577,7 +7576,7 @@ MaxClient.prototype.unflagActivity = function(activityid, callback) {
         // checking for CORS avalability
         maxui.settings.maxTalkURL = maxui.utils.normalizeWhiteSpace(maxui.settings.maxTalkURL);
         if (_.isUndefined(maxui.settings.maxTalkURL) || maxui.settings.maxTalkURL === "") {
-            maxui.settings.maxTalkURL = maxui.settings.maxServerURLSTOMP + '/ws';
+            maxui.settings.maxTalkURL = maxui.settings.maxServerURL + '/ws';
         }
         // Normalize domain if present, to avoid errors with unvalid values and whitespaces
         maxui.settings.domain = maxui.utils.normalizeWhiteSpace(maxui.settings.domain);
