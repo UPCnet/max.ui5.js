@@ -60,7 +60,7 @@
         if (_.isUndefined(maxui.settings.maxTalkURL) || maxui.settings.maxTalkURL === "") {
             var url = maxui.settings.maxServerURL;
             url.replace("http://", "ws://");
-            maxui.settings.maxTalkURL = maxui.settings.maxServerURL + '/ws';
+            maxui.settings.maxTalkURL = url + '/ws';
         }
         // Normalize domain if present, to avoid errors with unvalid values and whitespaces
         maxui.settings.domain = maxui.utils.normalizeWhiteSpace(maxui.settings.domain);
