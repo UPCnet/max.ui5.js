@@ -58,8 +58,8 @@
         // checking for CORS avalability
         maxui.settings.maxTalkURL = maxui.utils.normalizeWhiteSpace(maxui.settings.maxTalkURL);
         if (_.isUndefined(maxui.settings.maxTalkURL) || maxui.settings.maxTalkURL === "") {
-            url = maxui.settings.maxServerURL
-            url.replace("http://","ws://")
+            var url = maxui.settings.maxServerURL;
+            url.replace("http://", "ws://");
             maxui.settings.maxTalkURL = url + '/ws';
         }
         // Normalize domain if present, to avoid errors with unvalid values and whitespaces

@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.29.1';
+        maxui.version = '5.0.29.2';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -58,8 +58,8 @@
         // checking for CORS avalability
         maxui.settings.maxTalkURL = maxui.utils.normalizeWhiteSpace(maxui.settings.maxTalkURL);
         if (_.isUndefined(maxui.settings.maxTalkURL) || maxui.settings.maxTalkURL === "") {
-            url = maxui.settings.maxServerURL
-            url.replace("http://","ws://")
+            var url = maxui.settings.maxServerURL;
+            url.replace("http://", "ws://");
             maxui.settings.maxTalkURL = maxui.settings.maxServerURL + '/ws';
         }
         // Normalize domain if present, to avoid errors with unvalid values and whitespaces
