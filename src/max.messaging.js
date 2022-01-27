@@ -35,7 +35,8 @@ var max = max || {};
         }
         self.login += self.maxui.settings.username;
         // Start socket
-        self.ws = Stomp.client(self.stompServer);
+        //self.ws = new WebSocket('ws://localhost:8081/devel/ws');
+        self.ws = new WebSocket(self.stompServer);
         self.bindings = [];
         self.specification = {
             uuid: {
@@ -186,15 +187,15 @@ var max = max || {};
     MaxMessaging.prototype.start = function() {
         var self = this;
         self.maxui.logger.info('Connecting ...', self.logtag);
-        self.ws.connect();
+        self.connect();
         var current_try = 1;
         // Retry connection if initial failed
         var interval = setInterval(function(event) {
             if (!self.active && current_try <= self.max_retries) {
                 self.maxui.logger.debug('Connection retry #{0}'.format(current_try), self.logtag);
-                self.ws.disconnect();
-                self.ws = Stomp.client(self.maxui.settings.maxTalkURL);
-                self.ws.connect();
+                self.disconnect();
+                self.ws = new WebSocket(self.maxui.settings.maxTalkURL);
+                self.connect();
             } else {
                 if (!self.active) {
                     self.maxui.logger.error('Connection failure after {0} reconnect attempts'.format(self.max_retries), self.logtag);
@@ -241,8 +242,9 @@ var max = max || {};
     MaxMessaging.prototype.connect = function() {
         var self = this;
         self.stomp = Stomp.over(self.ws);
-        self.stomp.heartbeat.outgoing = 0;
+        // self.stomp.heartbeat.outgoing = 0;
         self.stomp.heartbeat.incoming = 0;
+        // self.stomp.reconnect_delay = 100;
         self.stomp.debug = function(message) {
             self.maxui.logger.debug(message, self.logtag);
         };
