@@ -242,9 +242,10 @@ var max = max || {};
     MaxMessaging.prototype.connect = function() {
         var self = this;
         self.stomp = Stomp.over(self.ws);
-        // self.stomp.heartbeat.outgoing = 0;
-        self.stomp.heartbeat.incoming = 0;
-        // self.stomp.reconnect_delay = 100;
+        self.stomp.heartbeat.outgoing = 60000;
+        self.stomp.heartbeat.incoming = 60000;
+        self.stomp.reconnect_delay = 100;
+        var heartbeat = [self.stomp.heartbeat.outgoing, self.stomp.heartbeat.incoming].join(',');
         self.stomp.debug = function(message) {
             self.maxui.logger.debug(message, self.logtag);
         };
@@ -256,6 +257,7 @@ var max = max || {};
             login: self.login,
             passcode: self.token,
             host: self.vhost,
+            "heart-beat": heartbeat,
             product: product,
             "product-version": self.maxui.version,
             platform: '{0} {1} / {2} {3}'.format(jq.ua.browser.name, jq.ua.browser.version, jq.ua.os.name, jq.ua.os.version)
