@@ -1,7 +1,7 @@
 {
   "name": "max.ui5.js",
   "description": "MAX javascript widget",
-  "version": "5.0.29.7",
+  "version": "5.0.29.8",
   "homepage": "https://github.com/UPCnet/max.ui5.js",
   "author": {
     "name": "UPCnet",
@@ -25,7 +25,8 @@
     "grunt-dalek": "",
     "grunt-jsbeautifier": "",
     "js-beautify": "latest",
-    "grunt-text-replace": ""
+    "grunt-text-replace": "",
+    "grunt-fontello": ""
   },
   "keywords": [
     "max"

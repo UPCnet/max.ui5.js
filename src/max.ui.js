@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.29.7';
+        maxui.version = '5.0.29.8';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
