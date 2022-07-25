@@ -27,7 +27,7 @@ max.templates = function() {
                 </div>\
                 <div class="maxui-activity-message">\
                     {{#fileDownload}}\
-                    <form action="/activities/{{id}}/file/download" method="POST">\
+                    <form action="{{maxServerURL}}/activities/{{id}}/file/download" method="POST">\
                         <input type="hidden" name="X-Oauth-Token" value="{{auth.token}}">\
                         <input type="hidden" name="X-Oauth-Username" value="{{auth.username}}">\
                         <input type="hidden" name="X-Oauth-Scope" value="widgetcli">\
@@ -161,7 +161,7 @@ max.templates = function() {
                 <span class="maxui-avatar maxui-little"><img src="{{avatarURL}}"></span>\
                 <div class="maxui-balloon">\
                     {{#fileDownload}}\
-                    <form action="/messages/{{id}}/file/download" method="POST">\
+                    <form action="{{maxServerURL}}/messages/{{id}}/file/download" method="POST">\
                         <input type="hidden" name="X-Oauth-Token" value="{{auth.token}}">\
                         <input type="hidden" name="X-Oauth-Username" value="{{auth.username}}">\
                         <input type="hidden" name="X-Oauth-Scope" value="widgetcli">\

@@ -1548,6 +1548,7 @@
                 likesUsernames: likesUsernames.join('\n'),
                 flagged: activity.flagged,
                 avatarURL: avatar_url,
+                maxServerURL: maxui.settings.maxServerURL,
                 publishedIn: contexts,
                 canDeleteActivity: activity.deletable,
                 canFlagActivity: maxui.settings.canflag,

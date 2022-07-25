@@ -424,6 +424,7 @@ var max = max || {};
                         othersMessage: others_message,
                         literals: self.maxui.settings.literals,
                         avatarURL: avatar_url,
+                        maxServerURL: self.maxui.settings.maxServerURL,
                         displayName: message.user.displayname,
                         showDisplayName: others_message && is_group_conversation,
                         ack: message.ack ? origin === 'maxui-user-me' : false,
