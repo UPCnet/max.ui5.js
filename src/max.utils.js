@@ -345,3 +345,36 @@ max.utils = function() {
         }
     };
 };
+
+function showPreview(event) {
+    if (event.target.files.length > 0) {
+        if (event.target.files[0].size > 50000000) {
+            alert('El archivo no debe superar los 50MB');
+            $("#maxui-img").val('');
+            $("#maxui-file").val('');
+        }
+        else {
+            var name = event.target.files[0].name;
+            var size = (event.target.files[0].size / 1000).toFixed(1);
+            if (event.target.id === 'maxui-img')
+                var html = '<div class="preview-box"><div class="preview-icon-img"><span class="preview-title">{0}</span><p>{1} KB</p><i class="fa fa-times" onclick="inputClear(event)"></i></div></div>'.format(name, size);
+            else
+                var html = '<div class="preview-box"><div class="preview-icon-file"><span class="preview-title">{0}</span><p>{1} KB</p><i class="fa fa-times" onclick="inputClear(event)"></i></div></div>'.format(name, size);
+            $("#maxui-newactivity-box > .upload-file").addClass('label-disabled');
+            $("#maxui-file").prop("disabled", true);
+            $("#maxui-newactivity-box > .upload-img").addClass('label-disabled');
+            $("#maxui-img").prop("disabled", true);
+            $('#preview').prepend(html);
+        }
+    }
+}
+
+function inputClear(event) {
+    $("#preview").empty();
+    $("#maxui-img").val('');
+    $("#maxui-file").val('');
+    $("#maxui-newactivity-box > .upload-img").removeClass('label-disabled');
+    $("#maxui-img").prop("disabled", false);
+    $("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
+    $("#maxui-file").prop("disabled", false);
+}

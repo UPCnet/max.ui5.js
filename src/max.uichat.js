@@ -744,9 +744,9 @@
         });
         // **************************************************************************************
         //Assign Activity post action And textarea behaviour
-        maxui.bindActionBehaviourChat('#maxuichat-widget-container #maxui-newactivity-chat', '#maxui-newactivity-box', {}, function(text) {
+        maxui.bindActionBehaviourChat('#maxuichat-widget-container #maxui-newactivity-chat', '#maxui-newactivity-box', {}, function(text, media) {
             if (maxui.settings.UISection === 'timeline') {
-                maxui.sendActivityChat(text);
+                maxui.sendActivityChat(text, media);
                 jq('#maxuichat-widget-container #maxui-search').toggleClass('folded', true);
             } else if (maxui.settings.UISection === 'conversations') {
                 if (maxui.settings.conversationsSection === 'conversations') {
@@ -952,12 +952,25 @@
                         }*/
         }).on('click', target + ' .maxui-button', function(event) {
             event.preventDefault();
+            var media = undefined;
+            var file = document.getElementById('maxui-file').files[0];
+            if (file != undefined) media = file;
+            else {
+                var image = document.getElementById('maxui-img').files[0];
+                if (image != undefined) media = image;
+            }
             var $area = jq(this).parent().find('.maxui-text-input');
             var literal = $area.attr('data-literal');
             var text = $area.val();
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
             if ((normalized !== literal & normalized !== '') || options.empty_click) {
-                clickFunction.apply(this, [text]);
+                clickFunction.apply(this, [text, media]);
+                $('#maxui-file').value = "";
+                $('#maxui-img').value = "";
+                $("#maxui-newactivity-box > .upload-img").removeClass('label-disabled');
+                $("#maxui-img").prop("disabled", false);
+                $("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
+                $("#maxui-file").prop("disabled", false);
             }
         });
     };
@@ -1340,7 +1353,7 @@
      *    Sends a post when user clicks `post activity` button with
      *    the current contents of the `maxui-newactivity` textarea
      **/
-    jq.fn.sendActivityChat = function() {
+    jq.fn.sendActivityChat = function (text, media) {
         var maxui = this;
         var text = jq('#maxuichat-widget-container #maxui-newactivity-chat textarea').val();
         var func_params = [];
@@ -1366,8 +1379,11 @@
         if (maxui.settings.generatorName) {
             func_params.push(maxui.settings.generatorName);
         }
+        if (media) func_params.push(media);
         var activityAdder = maxui.maxClient.addActivity;
         activityAdder.apply(maxui.maxClient, func_params);
+        var preview = document.getElementById("preview");
+        preview.style.display = "none";
         jq('#maxui-subscriptions option:first-child').attr("selected", "selected");
     };
     /**
@@ -1669,6 +1685,8 @@
         var params = {
             avatar: maxui.settings.avatarURLpattern.format(maxui.settings.username),
             allowPosting: maxui.settings.canwrite,
+            imgLiteral: maxui.settings.literals.new_img_post,
+            fileLiteral: maxui.settings.literals.new_file_post,
             buttonLiteral: maxui.settings.literals.new_activity_post,
             textLiteral: maxui.settings.literals.new_activity_text,
             literals: maxui.settings.literals,

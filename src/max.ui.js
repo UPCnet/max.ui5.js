@@ -745,9 +745,9 @@
         });
         // **************************************************************************************
         //Assign Activity post action And textarea behaviour
-        maxui.bindActionBehaviour('#maxui-newactivity', '#maxui-newactivity-box', {}, function(text) {
+        maxui.bindActionBehaviour('#maxui-newactivity', '#maxui-newactivity-box', {}, function(text, media) {
             if (maxui.settings.UISection === 'timeline') {
-                maxui.sendActivity(text);
+                maxui.sendActivity(text, media);
                 jq('#maxui-search').toggleClass('folded', true);
             } else if (maxui.settings.UISection === 'conversations') {
                 if (maxui.settings.conversationsSection === 'conversations') {
@@ -953,12 +953,25 @@
                         }*/
         }).on('click', target + ' .maxui-button', function(event) {
             event.preventDefault();
+            var media = undefined;
+            var file = document.getElementById('maxui-file').files[0];
+            if (file != undefined) media = file;
+            else {
+                var image = document.getElementById('maxui-img').files[0];
+                if (image != undefined) media = image;
+            }
             var $area = jq(this).parent().find('.maxui-text-input');
             var literal = $area.attr('data-literal');
             var text = $area.val();
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
             if ((normalized !== literal & normalized !== '') || options.empty_click) {
-                clickFunction.apply(this, [text]);
+                clickFunction.apply(this, [text, media]);
+                $('#maxui-file').value = "";
+                $('#maxui-img').value = "";
+                $("#maxui-newactivity-box > .upload-img").removeClass('label-disabled');
+                $("#maxui-img").prop("disabled", false);
+                $("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
+                $("#maxui-file").prop("disabled", false);
             }
         });
     };
@@ -1341,7 +1354,7 @@
      *    Sends a post when user clicks `post activity` button with
      *    the current contents of the `maxui-newactivity` textarea
      **/
-    jq.fn.sendActivity = function() {
+    jq.fn.sendActivity = function (text, media) {
         var maxui = this;
         var text = jq('#maxui-newactivity textarea').val();
         var func_params = [];
@@ -1367,8 +1380,11 @@
         if (maxui.settings.generatorName) {
             func_params.push(maxui.settings.generatorName);
         }
+        if (media) func_params.push(media);
         var activityAdder = maxui.maxClient.addActivity;
         activityAdder.apply(maxui.maxClient, func_params);
+        var preview = document.getElementById("preview");
+        preview.style.display = "none";
         jq('#maxui-subscriptions option:first-child').attr("selected", "selected");
     };
     /**
@@ -1592,6 +1608,22 @@
                 // When the animation ends, move the new activites to its native container
                 jq('#maxui-preload .maxui-wrapper').html("");
                 jq('#maxui-activities').prepend(activities);
+                if (items.length === 1) {
+                    if (activity.object.objectType === 'image') {
+                        maxui.maxClient.getMessageImage('/activities/{0}/image/thumb'.format(activity.id), function (encoded_image_data) {
+                            var imagetag = '<img class="maxui-embedded fullImage" alt="" src="data:image/png;base64,{0}" />'.format(encoded_image_data);
+                            jq('.maxui-activity#{0} .maxui-activity-message .maxui-body'.format(activity.id)).after(imagetag);
+                            jq('.maxui-activity#{0} .maxui-activity-message img.fullImage'.format(activity.id)).on('click', function () {
+                                maxui.maxClient.getMessageImage(activity.object.fullURL, function (encoded_image_data) {
+                                    var image = new Image();
+                                    image.src = "data:image/png;base64," + encoded_image_data;
+                                    var w = window.open("");
+                                    w.document.write(image.outerHTML);
+                                });
+                            });
+                        });
+                    }
+                }
                 jq('#maxui-preload').height(0);
             });
         }
