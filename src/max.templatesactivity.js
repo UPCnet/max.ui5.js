@@ -142,9 +142,9 @@ max.templates = function() {
                     {{/showSubscriptionList}}\
                     <div id="preview"></div>\
                     <label for="maxui-file" class="upload-file">{{fileLiteral}}</label>\
-                    <input type="file" id="maxui-file" accept="file/*" onchange="showPreview(event);" style="display:none">\
+                    <input type="file" id="maxui-file" class="maxui-file-image" accept="file/*" style="display:none">\
                     <label for="maxui-img" class="upload-img" style="">{{imgLiteral}}</label>\
-                    <input type="file" id="maxui-img" accept="image/*" onchange="showPreview(event);" style="display:none">\
+                    <input type="file" id="maxui-img" class="maxui-file-image" accept="image/*" style="display:none">\
                    <input disabled="disabled" type="button" class="maxui-button maxui-disabled" value="{{buttonLiteral}}">\
               </div>\
             '),

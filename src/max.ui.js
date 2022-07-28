@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.29.14';
+        maxui.version = '5.0.29.15';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -508,6 +508,39 @@
                     maxui.printActivities({});
                 });
             }
+        });
+        jq('#maxui-newactivity-box').on('click', '.maxui-file-image', function(event) {
+            event.preventDefault();
+            if (event.target.files.length > 0) {
+                if (event.target.files[0].size > 50000000) {
+                    alert("El archivo no debe superar los 50MB");
+                    jq("#maxui-img").val("");
+                    jq("#maxui-file").val("");
+                } else {
+                    var name = event.target.files[0].name;
+                    var size = (event.target.files[0].size / 1000).toFixed(1);
+                    var html;
+                    if (event.target.id === "maxui-img") {
+                        html = "<div class=\"preview-box\"><div class=\"preview-icon-img\"><span class=\"preview-title\">{0}</span><p>{1} KB</p><i class=\"fa fa-times\"></i></div></div>".format(name, size);
+                    } else {
+                        html = "<div class=\"preview-box\"><div class=\"preview-icon-file\"><span class=\"preview-title\">{0}</span><p>{1} KB</p><i class=\"fa fa-times\"></i></div></div>".format(name, size);
+                    }
+                    jq("#maxui-newactivity-box > .upload-file").addClass("label-disabled");
+                    jq("#maxui-file").prop("disabled", true);
+                    jq("#maxui-newactivity-box > .upload-img").addClass("label-disabled");
+                    jq("#maxui-img").prop("disabled", true);
+                    jq("#preview").prepend(html);
+                }
+            }
+        });
+        jq('#maxui-newactivity-box').on('click', '.fa-times', function(event) {
+            jq("#preview").empty();
+            jq("#maxui-img").val("");
+            jq("#maxui-file").val("");
+            jq("#maxui-newactivity-box > .upload-img").removeClass("label-disabled");
+            jq("#maxui-img").prop("disabled", false);
+            jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
+            jq("#maxui-file").prop("disabled", false);
         });
         //Assign activity removal confirmation dialog toggle via delegating the click to the activities container
         jq('#maxui-activities').on('click', '.maxui-action.maxui-delete', function(event) {
@@ -1835,43 +1868,5 @@
     jq.maxui = function() {};
     jq.maxui.settings = function() {
         return this.settings;
-    };
-    /**
-     *    Renders the preview image/file when posting
-     **/
-    jq.fn.showPreview = function(event) {
-        if (event.target.files.length > 0) {
-            if (event.target.files[0].size > 50000000) {
-                alert("El archivo no debe superar los 50MB");
-                jq("#maxui-img").val("");
-                jq("#maxui-file").val("");
-            } else {
-                var name = event.target.files[0].name;
-                var size = (event.target.files[0].size / 1000).toFixed(1);
-                var html;
-                if (event.target.id === "maxui-img") {
-                    html = "<div class=\"preview-box\"><div class=\"preview-icon-img\"><span class=\"preview-title\">{0}</span><p>{1} KB</p><i class=\"fa fa-times\" onclick=\"inputClear(event)\"></i></div></div>".format(name, size);
-                } else {
-                    html = "<div class=\"preview-box\"><div class=\"preview-icon-file\"><span class=\"preview-title\">{0}</span><p>{1} KB</p><i class=\"fa fa-times\" onclick=\"inputClear(event)\"></i></div></div>".format(name, size);
-                }
-                jq("#maxui-newactivity-box > .upload-file").addClass("label-disabled");
-                jq("#maxui-file").prop("disabled", true);
-                jq("#maxui-newactivity-box > .upload-img").addClass("label-disabled");
-                jq("#maxui-img").prop("disabled", true);
-                jq("#preview").prepend(html);
-            }
-        }
-    };
-    /**
-     *    Clear the preview image/file before posting
-     **/
-    jq.fn.inputClear = function(event) {
-        jq("#preview").empty();
-        jq("#maxui-img").val("");
-        jq("#maxui-file").val("");
-        jq("#maxui-newactivity-box > .upload-img").removeClass("label-disabled");
-        jq("#maxui-img").prop("disabled", false);
-        jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
-        jq("#maxui-file").prop("disabled", false);
     };
 }(jQuery));
