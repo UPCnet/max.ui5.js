@@ -1303,6 +1303,9 @@
   background-color: #e8e8e8;
   cursor: default;
 }
+#maxui-newactivity-box .fa-times:hover {
+  cursor: pointer;
+}
 #maxui-container img {
   -ms-interpolation-mode: bicubic;
   image-rendering: optimizeQuality;
