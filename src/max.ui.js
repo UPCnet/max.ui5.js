@@ -530,17 +530,17 @@
                     jq("#maxui-newactivity-box > .upload-img").addClass("label-disabled");
                     jq("#maxui-img").prop("disabled", true);
                     jq("#preview").prepend(html);
+                    jq('#maxui-newactivity-box .fa-times').on('click', function(event) {
+                        jq("#preview").empty();
+                        jq("#maxui-img").val("");
+                        jq("#maxui-file").val("");
+                        jq("#maxui-newactivity-box > .upload-img").removeClass("label-disabled");
+                        jq("#maxui-img").prop("disabled", false);
+                        jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
+                        jq("#maxui-file").prop("disabled", false);
+                    });
                 }
             }
-        });
-        jq('#maxui-newactivity-box .fa-times').on('click', function(event) {
-            jq("#preview").empty();
-            jq("#maxui-img").val("");
-            jq("#maxui-file").val("");
-            jq("#maxui-newactivity-box > .upload-img").removeClass("label-disabled");
-            jq("#maxui-img").prop("disabled", false);
-            jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
-            jq("#maxui-file").prop("disabled", false);
         });
         //Assign activity removal confirmation dialog toggle via delegating the click to the activities container
         jq('#maxui-activities').on('click', '.maxui-action.maxui-delete', function(event) {
