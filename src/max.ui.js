@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.29.15';
+        maxui.version = '5.0.29.16';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -509,7 +509,7 @@
                 });
             }
         });
-        jq('#maxui-newactivity-box').on('click', '.maxui-file-image', function(event) {
+        jq('#maxui-newactivity-box').on('change', '.maxui-file-image', function(event) {
             event.preventDefault();
             if (event.target.files.length > 0) {
                 if (event.target.files[0].size > 50000000) {
