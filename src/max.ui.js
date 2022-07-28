@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.29.8';
+        maxui.version = '5.0.29.9';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -953,12 +953,16 @@
                         }*/
         }).on('click', target + ' .maxui-button', function(event) {
             event.preventDefault();
-            var media = undefined;
+            var media;
+            media = undefined;
             var file = document.getElementById('maxui-file').files[0];
-            if (file != undefined) media = file;
-            else {
+            if (file !== undefined) {
+                media = file;
+            } else {
                 var image = document.getElementById('maxui-img').files[0];
-                if (image != undefined) media = image;
+                if (image !== undefined) {
+                    media = image;
+                }
             }
             var $area = jq(this).parent().find('.maxui-text-input');
             var literal = $area.attr('data-literal');
@@ -966,12 +970,12 @@
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
             if ((normalized !== literal & normalized !== '') || options.empty_click) {
                 clickFunction.apply(this, [text, media]);
-                $('#maxui-file').value = "";
-                $('#maxui-img').value = "";
-                $("#maxui-newactivity-box > .upload-img").removeClass('label-disabled');
-                $("#maxui-img").prop("disabled", false);
-                $("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
-                $("#maxui-file").prop("disabled", false);
+                jq('#maxui-file').value = "";
+                jq('#maxui-img').value = "";
+                jq("#maxui-newactivity-box > .upload-img").removeClass('label-disabled');
+                jq("#maxui-img").prop("disabled", false);
+                jq("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
+                jq("#maxui-file").prop("disabled", false);
             }
         });
     };
@@ -1354,9 +1358,9 @@
      *    Sends a post when user clicks `post activity` button with
      *    the current contents of the `maxui-newactivity` textarea
      **/
-    jq.fn.sendActivity = function (text, media) {
+    jq.fn.sendActivity = function(text, media) {
         var maxui = this;
-        var text = jq('#maxui-newactivity textarea').val();
+        text = jq('#maxui-newactivity textarea').val();
         var func_params = [];
         // change to recent view before posting
         jq('#maxui-activity-sort .maxui-sort-action.active').toggleClass('active', false);
@@ -1380,7 +1384,9 @@
         if (maxui.settings.generatorName) {
             func_params.push(maxui.settings.generatorName);
         }
-        if (media) func_params.push(media);
+        if (media) {
+            func_params.push(media);
+        }
         var activityAdder = maxui.maxClient.addActivity;
         activityAdder.apply(maxui.maxClient, func_params);
         var preview = document.getElementById("preview");
@@ -1610,11 +1616,11 @@
                 jq('#maxui-activities').prepend(activities);
                 if (items.length === 1) {
                     if (activity.object.objectType === 'image') {
-                        maxui.maxClient.getMessageImage('/activities/{0}/image/thumb'.format(activity.id), function (encoded_image_data) {
+                        maxui.maxClient.getMessageImage('/activities/{0}/image/thumb'.format(activity.id), function(encoded_image_data) {
                             var imagetag = '<img class="maxui-embedded fullImage" alt="" src="data:image/png;base64,{0}" />'.format(encoded_image_data);
                             jq('.maxui-activity#{0} .maxui-activity-message .maxui-body'.format(activity.id)).after(imagetag);
-                            jq('.maxui-activity#{0} .maxui-activity-message img.fullImage'.format(activity.id)).on('click', function () {
-                                maxui.maxClient.getMessageImage(activity.object.fullURL, function (encoded_image_data) {
+                            jq('.maxui-activity#{0} .maxui-activity-message img.fullImage'.format(activity.id)).on('click', function() {
+                                maxui.maxClient.getMessageImage(activity.object.fullURL, function(encoded_image_data) {
                                     var image = new Image();
                                     image.src = "data:image/png;base64," + encoded_image_data;
                                     var w = window.open("");

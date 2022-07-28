@@ -96,7 +96,7 @@ MaxClient.prototype.POST = function(route, query, callback) {
     });
     return true;
 };
-MaxClient.prototype.POSTFILE = function (route, query, callback) {
+MaxClient.prototype.POSTFILE = function(route, query, callback) {
     var self = this;
     var resource_uri = '{0}{1}'.format(this.url, route);
     // Get method-defined triggers
@@ -104,10 +104,9 @@ MaxClient.prototype.POSTFILE = function (route, query, callback) {
     if (arguments.length > 3) {
         triggers = arguments[3];
     }
-
     jQuery.ajax({
         url: resource_uri,
-        beforeSend: function (xhr) {
+        beforeSend: function(xhr) {
             xhr.setRequestHeader("X-Oauth-Token", self.token);
             xhr.setRequestHeader("X-Oauth-Username", self.actor.username);
             xhr.setRequestHeader("X-Oauth-Scope", 'widgetcli');
@@ -118,13 +117,12 @@ MaxClient.prototype.POSTFILE = function (route, query, callback) {
         data: query,
         async: true,
         dataType: 'json'
-    }).done(function (result) {
+    }).done(function(result) {
         callback.call(result);
         if (triggers.done) {
             jQuery(window).trigger(triggers.done, result);
         }
-
-    }).fail(function (xhr) {
+    }).fail(function(xhr) {
         jQuery(window).trigger('maxclienterror', xhr);
         if (triggers.fail) {
             jQuery(window).trigger(triggers.fail, xhr);
@@ -304,8 +302,9 @@ MaxClient.prototype.addComment = function(comment, activity, callback) {
     this.POST(route, query, callback);
 };
 MaxClient.prototype.addActivity = function(text, contexts, callback, media) {
-    if (media == undefined) {
-        var query = {
+    var query = {};
+    if (media === undefined) {
+        query = {
             "object": {
                 "objectType": "note",
                 "content": ""
@@ -313,20 +312,20 @@ MaxClient.prototype.addActivity = function(text, contexts, callback, media) {
         };
     } else {
         if (media.type.split('/')[0] === 'image') {
-            var query = {
+            query = {
                 "object": {
                     "objectType": "image",
                     "content": "",
                     "mimetype": media.type
-                },
+                }
             };
         } else {
-            var query = {
+            query = {
                 "object": {
                     "objectType": "file",
                     "content": "",
                     "mimetype": media.type
-                },
+                }
             };
         }
     }
@@ -349,13 +348,14 @@ MaxClient.prototype.addActivity = function(text, contexts, callback, media) {
         'done': 'maxui-posted-activity',
         'fail': 'maxui-failed-activity'
     };
-    if (media == undefined) {
+    if (media === undefined) {
         this.POST(route, query, callback, trigger);
-    }
-    else {
+    } else {
         let formData = new FormData();
         formData.append("json_data", JSON.stringify(query));
-        formData.append("file", new Blob([media], { type: media.type }), media.name);
+        formData.append("file", new Blob([media], {
+            type: media.type
+        }), media.name);
         this.POSTFILE(route, formData, callback, trigger);
     }
 };

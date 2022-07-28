@@ -169,8 +169,8 @@ var max = max || {};
             var params = {
                 avatar: self.maxui.settings.avatarURLpattern.format(self.maxui.settings.username),
                 allowPosting: true,
-                imgLiteral: maxui.settings.literals.new_img_post,
-                fileLiteral: maxui.settings.literals.new_file_post,
+                imgLiteral: self.maxui.settings.literals.new_img_post,
+                fileLiteral: self.maxui.settings.literals.new_file_post,
                 buttonLiteral: self.maxui.settings.literals.new_message_post,
                 textLiteral: self.maxui.settings.literals.new_conversation_text,
                 literals: self.maxui.settings.literals,

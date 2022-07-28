@@ -337,7 +337,7 @@ module.exports = function (grunt) {
                 eqeqeq: true,
                 eqnull: true,
                 browser: true,
-                es3: true,
+                esversion: 6,
                 unused: 'vars',
                 globals: {
                     "jQuery": true,

@@ -952,12 +952,16 @@
                         }*/
         }).on('click', target + ' .maxui-button', function(event) {
             event.preventDefault();
-            var media = undefined;
+            var media;
+            media = undefined;
             var file = document.getElementById('maxui-file').files[0];
-            if (file != undefined) media = file;
-            else {
+            if (file !== undefined) {
+                media = file;
+            } else {
                 var image = document.getElementById('maxui-img').files[0];
-                if (image != undefined) media = image;
+                if (image !== undefined) {
+                    media = image;
+                }
             }
             var $area = jq(this).parent().find('.maxui-text-input');
             var literal = $area.attr('data-literal');
@@ -965,12 +969,12 @@
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
             if ((normalized !== literal & normalized !== '') || options.empty_click) {
                 clickFunction.apply(this, [text, media]);
-                $('#maxui-file').value = "";
-                $('#maxui-img').value = "";
-                $("#maxui-newactivity-box > .upload-img").removeClass('label-disabled');
-                $("#maxui-img").prop("disabled", false);
-                $("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
-                $("#maxui-file").prop("disabled", false);
+                jq('#maxui-file').value = "";
+                jq('#maxui-img').value = "";
+                jq("#maxui-newactivity-box > .upload-img").removeClass('label-disabled');
+                jq("#maxui-img").prop("disabled", false);
+                jq("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
+                jq("#maxui-file").prop("disabled", false);
             }
         });
     };
@@ -1353,9 +1357,9 @@
      *    Sends a post when user clicks `post activity` button with
      *    the current contents of the `maxui-newactivity` textarea
      **/
-    jq.fn.sendActivityChat = function (text, media) {
+    jq.fn.sendActivityChat = function(text, media) {
         var maxui = this;
-        var text = jq('#maxuichat-widget-container #maxui-newactivity-chat textarea').val();
+        text = jq('#maxuichat-widget-container #maxui-newactivity-chat textarea').val();
         var func_params = [];
         // change to recent view before posting
         jq('#maxuichat-widget-container #maxui-activity-sort .maxui-sort-action.active').toggleClass('active', false);
@@ -1379,7 +1383,9 @@
         if (maxui.settings.generatorName) {
             func_params.push(maxui.settings.generatorName);
         }
-        if (media) func_params.push(media);
+        if (media) {
+            func_params.push(media);
+        }
         var activityAdder = maxui.maxClient.addActivity;
         activityAdder.apply(maxui.maxClient, func_params);
         var preview = document.getElementById("preview");
