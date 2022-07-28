@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.29.12';
+        maxui.version = '5.0.29.13';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -1712,6 +1712,8 @@
             allowPosting: maxui.settings.canwrite,
             buttonLiteral: maxui.settings.literals.new_activity_post,
             textLiteral: maxui.settings.literals.new_activity_text,
+            imgLiteral: maxui.settings.literals.new_img_post,
+            fileLiteral: maxui.settings.literals.new_file_post,
             literals: maxui.settings.literals,
             showConversationsToggle: toggleCT ? 'display:block;' : 'display:none;',
             showSubscriptionList: maxui.settings.showSubscriptionList && maxui.settings.subscriptionsWrite.length > 0,

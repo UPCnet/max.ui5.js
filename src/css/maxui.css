@@ -1251,6 +1251,58 @@
   color: #6f6f6f;
   /* ==================================*/
 }
+#maxui-container #preview {
+  background-color: #fff;
+}
+#maxui-container .preview-box {
+  padding: 9px 6px 3px 6px;
+  text-align: left;
+  margin-top: 10px;
+}
+#maxui-container .preview-title {
+  font-size: medium;
+}
+#maxui-container .preview-icon-img:before {
+  content: "\f1c5";
+  font-family: FontAwesome;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: inherit;
+  margin-right: 7px;
+}
+#maxui-container .preview-icon-file:before {
+  content: "\f1c1";
+  font-family: FontAwesome;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: inherit;
+  margin-right: 7px;
+}
+#maxui-container .upload-file {
+  margin: 5px 0 0 0;
+  border-radius: 3px;
+  border: 1px solid #04192D;
+  padding: 3px 6px;
+  width: 106px;
+  text-align: center;
+}
+#maxui-container .upload-img {
+  margin: 5px 0 0 0;
+  border-radius: 3px;
+  border: 1px solid #04192D;
+  padding: 3px 6px;
+  width: 106px;
+  text-align: center;
+}
+#maxui-container .label-disabled {
+  -webkit-appearance: none;
+  border-color: #ccc;
+  color: #898989 !important;
+  background-color: #e8e8e8;
+  cursor: default;
+}
 #maxui-container img {
   -ms-interpolation-mode: bicubic;
   image-rendering: optimizeQuality;
@@ -1361,7 +1413,7 @@
 }
 #maxui-container #maxui-mainpanel #maxui-add-people-box #maxui-new-displayName .maxui-simple-text-input:focus {
   -webkit-box-shadow: none !important;
-  -moz-box-shadow: none! important;
+  -moz-box-shadow: none ! important;
   box-shadow: none !important;
   outline: 0;
   border: none !important;
