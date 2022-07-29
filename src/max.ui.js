@@ -1422,8 +1422,9 @@
         }
         var activityAdder = maxui.maxClient.addActivity;
         activityAdder.apply(maxui.maxClient, func_params);
-        var preview = document.getElementById("preview");
-        preview.style.display = "none";
+        jq("#preview").empty();
+        jq("#maxui-img").val("");
+        jq("#maxui-file").val("");
         jq('#maxui-subscriptions option:first-child').attr("selected", "selected");
     };
     /**
