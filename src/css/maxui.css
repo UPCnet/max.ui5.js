@@ -1254,6 +1254,9 @@
 #maxui-container #preview {
   background-color: #fff;
 }
+#maxui-container #maxui-subscriptions + #preview {
+  margin-top: 50px;
+}
 #maxui-container .preview-box {
   padding: 9px 6px 3px 6px;
   text-align: left;
@@ -1302,9 +1305,6 @@
   color: #898989 !important;
   background-color: #e8e8e8;
   cursor: default;
-}
-#maxui-newactivity-box .fa-times:hover {
-  cursor: pointer;
 }
 #maxui-container img {
   -ms-interpolation-mode: bicubic;
@@ -1438,6 +1438,10 @@
 #maxui-container #maxui-mainpanel #maxui-newactivity-chat #maxui-newactivity-box {
   margin-left: 56px;
   text-align: right;
+}
+#maxui-container #maxui-mainpanel #maxui-newactivity #maxui-newactivity-box .fa-times:hover,
+#maxui-container #maxui-mainpanel #maxui-newactivity-chat #maxui-newactivity-box .fa-times:hover {
+  cursor: pointer;
 }
 #maxui-container #maxui-mainpanel #maxui-newactivity #maxui-newactivity-box .maxui-wrapper,
 #maxui-container #maxui-mainpanel #maxui-newactivity-chat #maxui-newactivity-box .maxui-wrapper {
