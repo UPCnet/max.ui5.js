@@ -1,0 +1,27 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/pilarmarinas/.nvm/v0.8.8/bin/node',
+1 verbose cli   '/Users/pilarmarinas/.nvm/v0.8.8/bin/npm',
+1 verbose cli   'install' ]
+2 info using npm@1.1.59
+3 info using node@v0.8.8
+4 verbose read json /Users/pilarmarinas/Development/Plone/maxserver_devel_new_rosetta/src/max.ui5.js/package.json
+5 error install Couldn't read dependencies
+6 error Error: invalid version: 5.0.29.19
+6 error     at validVersion (/Users/pilarmarinas/.nvm/v0.8.8/lib/node_modules/npm/node_modules/read-package-json/read-json.js:522:40)
+6 error     at final (/Users/pilarmarinas/.nvm/v0.8.8/lib/node_modules/npm/node_modules/read-package-json/read-json.js:289:23)
+6 error     at /Users/pilarmarinas/.nvm/v0.8.8/lib/node_modules/npm/node_modules/read-package-json/read-json.js:119:33
+6 error     at cb (/Users/pilarmarinas/.nvm/v0.8.8/lib/node_modules/npm/node_modules/slide/lib/async-map.js:48:11)
+6 error     at /Users/pilarmarinas/.nvm/v0.8.8/lib/node_modules/npm/node_modules/read-package-json/read-json.js:241:40
+6 error     at fs.readFile (fs.js:176:14)
+6 error     at fs.close (/Users/pilarmarinas/.nvm/v0.8.8/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:92:5)
+6 error     at Object.oncomplete (fs.js:297:15)
+7 error If you need help, you may report this log at:
+7 error     <http://github.com/isaacs/npm/issues>
+7 error or email it to:
+7 error     <npm-@googlegroups.com>
+8 error System Darwin 21.5.0
+9 error command "/Users/pilarmarinas/.nvm/v0.8.8/bin/node" "/Users/pilarmarinas/.nvm/v0.8.8/bin/npm" "install"
+10 error cwd /Users/pilarmarinas/Development/Plone/maxserver_devel_new_rosetta/src/max.ui5.js
+11 error node -v v0.8.8
+12 error npm -v 1.1.59
+13 verbose exit [ 1, true ]

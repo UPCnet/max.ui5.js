@@ -452,13 +452,34 @@ MaxClient.prototype.addMessageAndConversation = function(params, callback) {
     var route = this.ROUTES.conversations;
     this.POST(route, query, callback);
 };
-MaxClient.prototype.addMessage = function(text, chash, callback) {
-    var query = {
-        "object": {
-            "objectType": "note",
-            "content": ""
+MaxClient.prototype.addMessage = function(text, chash, callback, media) {
+    var query = {};
+    if (media === undefined) {
+        query = {
+            "object": {
+                "objectType": "note",
+                "content": ""
+            }
+        };
+    } else {
+        if (media.type.split('/')[0] === 'image') {
+            query = {
+                "object": {
+                    "objectType": "image",
+                    "content": "",
+                    "mimetype": media.type
+                }
+            };
+        } else {
+            query = {
+                "object": {
+                    "objectType": "file",
+                    "content": "",
+                    "mimetype": media.type
+                }
+            };
         }
-    };
+    }
     query.object.content = text;
     var route = this.ROUTES.messages.format(chash);
     this.POST(route, query, callback);

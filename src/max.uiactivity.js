@@ -747,7 +747,7 @@
         //Assign Activity post action And textarea behaviour
         maxui.bindActionBehaviourActivity('#maxui-newactivity', '#maxui-newactivity-box', {}, function(text, media) {
             if (maxui.settings.UISection === 'timeline') {
-                maxui.sendActivityActivity(text.media);
+                maxui.sendActivityActivity(text, media);
                 jq('#maxuiactivity-widget-container #maxui-search').toggleClass('folded', true);
             } else if (maxui.settings.UISection === 'conversations') {
                 if (maxui.settings.conversationsSection === 'conversations') {
