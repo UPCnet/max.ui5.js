@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.0.29.21';
+        maxui.version = '5.0.29.22';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -428,6 +428,9 @@
             event.preventDefault();
             window.status = '';
             maxui.toggleSection('conversations');
+            jq('#maxui-newactivity-box > .upload-file').hide();
+            jq('#maxui-newactivity-box > .upload-img').hide();
+            jq('#maxui-newactivity-box > #preview').hide();
         });
         //Assign activation of timeline section by its button
         jq('#maxui-show-timeline').on('click', function(event) {

@@ -609,6 +609,9 @@ var max = max || {};
                 event.stopPropagation();
                 window.status = '';
                 self.listview.show();
+                jq('#maxui-newactivity-box > .upload-file').hide();
+                jq('#maxui-newactivity-box > .upload-img').hide();
+                jq('#maxui-newactivity-box > #preview').hide();
             });
             //Assign activation of messages section by delegating the clicl of a conversation arrow to the conversations container
             jq('#maxui-conversations').on('click', '.maxui-conversation', function(event) {
