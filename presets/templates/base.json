@@ -1,13 +1,13 @@
 {
-    "avatarURLpattern": "http://localhost:8081/people/{0}/avatar",
+    "avatarURLpattern": "http://max.local/people/ulearn.user1/avatar",
     "generator": "DEV",
     "generatorName": "MaxUI Devel Widget",
     "language": "ca",
-    "maxServerURL": "http://localhost:8081",
-    "maxServerURLAlias": "http://localhost:8081",
-    "maxTalkURL": "ws://localhost:8081/ws",
+    "maxServerURL": "http://max.local",
+    "maxServerURLAlias": "http://max.local",
+    "maxTalkURL": "ws://max.local/ws",
     "oAuthGrantType": "password",
-    "oAuthToken": "xTGrQepANsVQrtudDGmc8h2UxdchXRXS",
+    "oAuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NDI4MTUzMjksInN1YiI6InVsZWFybi51c2VyMSJ9.VaBz5G09S7IDO287QL1zxCZ8h-3iZk77oN_DYstKVDE",
     "profileURLpattern": "#",
-    "username": "carles.bruguera"
+    "username": "ulearn.user1"
 }

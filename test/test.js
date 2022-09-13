@@ -1,4 +1,4 @@
-var maxui_url = 'http://localhost:8081/maxui-dev/index.html'
+var maxui_url = 'http://max.local/maxui-dev/index.html'
 
 module.exports = {
 'Widget loaded': function (test) {

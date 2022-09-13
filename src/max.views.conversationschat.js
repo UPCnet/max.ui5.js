@@ -112,6 +112,9 @@ var max = max || {};
             var self = this;
             self.mainview.loadWrappers();
             self.mainview.$newparticipants.show();
+            jq('#maxui-newactivity-box > .upload-file').hide();
+            jq('#maxui-newactivity-box > .upload-img').hide();
+            jq('#maxui-newactivity-box > #preview').hide();
             // Load conversations from max if never loaded
             if (self.conversations.length === 0) {
                 self.load();
@@ -347,6 +350,7 @@ var max = max || {};
                 if (_.contains(['image', 'file'], message.object.objectType)) {
                     _message.data.fullURL = message.object.fullURL;
                     _message.data.thumbURL = message.object.thumbURL;
+                    _message.data.filename = message.object.filename;
                 }
                 // If it's a message from max, update last message on listview
                 self.mainview.listview.updateLastMessage(_message.destination, {
@@ -390,6 +394,7 @@ var max = max || {};
                 if (_.contains(['image', 'file'], message.object.objectType)) {
                     _message.data.fullURL = message.object.fullURL;
                     _message.data.thumbURL = message.object.thumbURL;
+                    _message.data.filename = message.object.filename;
                 }
             }
             self.messages[self.mainview.active] = self.messages[self.mainview.active] || [];
@@ -471,8 +476,17 @@ var max = max || {};
             var self = this;
             self.mainview.loadWrappers();
             // PLEASE CLEAN THIS SHIT
-            var $button = jq('#maxuichat-widget-container #maxui-newactivity-chat').find('input.maxui-button');
-            $button.removeAttr('disabled');
+            var $button = jq('#maxui-newactivity').find('input.maxui-button');
+            jq("#preview").empty();
+            jq("#maxui-img").val("");
+            jq("#maxui-file").val("");
+            jq("#maxui-newactivity-box > .upload-img").removeClass("label-disabled");
+            jq("#maxui-img").prop("disabled", false);
+            jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
+            jq("#maxui-file").prop("disabled", false);
+            jq('#maxui-newactivity-box > .upload-file').show();
+            jq('#maxui-newactivity-box > .upload-img').show();
+            jq('#maxui-newactivity-box > #preview').show();
             $button.attr('class', 'maxui-button');
             self.mainview.$newmessagebox.find('textarea').attr('class', 'maxui-text-input');
             self.mainview.$newmessagebox.find('.maxui-error-box').animate({
@@ -616,8 +630,9 @@ var max = max || {};
          *    Sends a post when user clicks `post activity` button with
          *    the current contents of the `maxui-newactivity` textarea
          **/
-        MaxConversations.prototype.send = function(text) {
+        MaxConversations.prototype.send = function(text, media) {
             var self = this;
+            var query = {};
             var message = {
                 data: {
                     "text": text
@@ -625,21 +640,69 @@ var max = max || {};
                 action: 'add',
                 object: 'message'
             };
-            var sent = self.maxui.messaging.send(message, '{0}.messages'.format(self.active));
-            jq('#maxuichat-widget-container #maxui-newactivity-chat textarea').val('');
-            jq('#maxuichat-widget-container #maxui-newactivity-chat .maxui-button').attr('disabled', 'disabled');
-            sent.ack = false;
-            sent.destination = self.active;
-            self.messagesview.append(sent);
+            if (media === undefined) {
+                query = {
+                    "object": {
+                        "objectType": "message",
+                        "content": ""
+                    }
+                };
+                var sent = self.maxui.messaging.send(message, '{0}.messages'.format(self.active));
+                sent.ack = false;
+                sent.destination = self.active;
+                self.messagesview.append(sent);
+                self.listview.updateLastMessage(self.active, {
+                    'content': sent.data.text,
+                    'published': sent.published,
+                    'user': sent.user.username
+                });
+                jq('#maxui-newactivity textarea').val('');
+                jq('#maxui-newactivity .maxui-button').attr('disabled', 'disabled');
+            } else {
+                if (media.type.split('/')[0] === 'image') {
+                    query = {
+                        "object": {
+                            "objectType": "image",
+                            "content": "",
+                            "mimetype": media.type
+                        }
+                    };
+                } else {
+                    query = {
+                        "object": {
+                            "objectType": "file",
+                            "content": "",
+                            "mimetype": media.type
+                        }
+                    };
+                }
+                var route = self.maxui.maxClient.ROUTES.messages.format(self.active);
+                let formData = new FormData();
+                query.object.content = text;
+                formData.append("json_data", JSON.stringify(query));
+                formData.append("file", new Blob([media], {
+                    type: media.type
+                }), media.name);
+                var callback = (function() {
+                    jq('#maxui-newactivity textarea').val('');
+                    jq('#maxui-newactivity .maxui-button').attr('disabled', 'disabled');
+                    jq("#preview").empty();
+                    jq("#maxui-img").val("");
+                    jq("#maxui-file").val("");
+                    jq("#maxui-newactivity-box > .upload-img").removeClass("label-disabled");
+                    jq("#maxui-img").prop("disabled", false);
+                    jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
+                    jq("#maxui-file").prop("disabled", false);
+                });
+                self.maxui.maxClient.POSTFILE(route, formData, callback);
+                setTimeout(function() {
+                    self.messagesview.load();
+                }, 500);
+            }
             self.messagesview.show(self.active);
             // When images finish loading, setContentPosition is called again
             // from inside render method, to adjust to new height set by the image
             self.scrollbar.setContentPosition(100);
-            self.listview.updateLastMessage(self.active, {
-                'content': sent.data.text,
-                'published': sent.published,
-                'user': sent.user.username
-            });
         };
         /**
          *    Creates a new conversation and shows it
