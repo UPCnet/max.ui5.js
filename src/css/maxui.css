@@ -1251,9 +1251,11 @@
   color: #6f6f6f;
   /* ==================================*/
 }
+#maxui-container #chat-preview,
 #maxui-container #preview {
   background-color: #fff;
 }
+#maxui-container #maxui-subscriptions + #chat-preview,
 #maxui-container #maxui-subscriptions + #preview {
   margin-top: 50px;
 }
@@ -1283,6 +1285,7 @@
   text-decoration: inherit;
   margin-right: 7px;
 }
+#maxui-container .chat-upload-file,
 #maxui-container .upload-file {
   margin: 5px 0 0 0;
   border-radius: 3px;
@@ -1291,6 +1294,7 @@
   width: 106px;
   text-align: center;
 }
+#maxui-container .chat-upload-img,
 #maxui-container .upload-img {
   margin: 5px 0 0 0;
   border-radius: 3px;
