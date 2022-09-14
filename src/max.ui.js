@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.1.0';
+        maxui.version = '5.1.1';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -350,23 +350,6 @@
                 value: jq(this).attr('value')
             });
             jq('#maxui-search').toggleClass('folded', false);
-        });
-        //Add to writeContexts selected subscription to post in it.
-        jq('#maxui-subscriptions').on('change', function() {
-            var $urlContext = jq('#maxui-subscriptions :selected').val();
-            if ($urlContext !== 'timeline') {
-                maxui.settings.writeContexts = [];
-                maxui.settings.writeContextsHashes = [];
-                // Add read context to write contexts
-                maxui.settings.writeContexts.push($urlContext);
-                // Store the hashes of the write contexts
-                for (var wc = 0; wc < maxui.settings.writeContexts.length; wc++) {
-                    maxui.settings.writeContextsHashes.push(maxui.utils.sha1(maxui.settings.writeContexts[wc]));
-                }
-            } else {
-                maxui.settings.writeContexts = [];
-                maxui.settings.writeContextsHashes = undefined;
-            }
         });
         //Assign filter closing via delegating the click to the filters container
         jq('#maxui-search-filters').on('click', '.maxui-close', function(event) {
@@ -1761,6 +1744,23 @@
                         }
                     });
                 }
+            }
+        });
+        //Add to writeContexts selected subscription to post in it.
+        jq('#maxui-subscriptions').on('change', function() {
+            var $urlContext = jq('#maxui-subscriptions :selected').val();
+            if ($urlContext !== 'timeline') {
+                maxui.settings.writeContexts = [];
+                maxui.settings.writeContextsHashes = [];
+                // Add read context to write contexts
+                maxui.settings.writeContexts.push($urlContext);
+                // Store the hashes of the write contexts
+                for (var wc = 0; wc < maxui.settings.writeContexts.length; wc++) {
+                    maxui.settings.writeContextsHashes.push(maxui.utils.sha1(maxui.settings.writeContexts[wc]));
+                }
+            } else {
+                maxui.settings.writeContexts = [];
+                maxui.settings.writeContextsHashes = undefined;
             }
         });
     };
