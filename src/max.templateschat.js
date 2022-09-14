@@ -116,17 +116,20 @@ max.templates = function() {
             '),
         postBoxChat: Hogan.compile('\
       <span class="maxui-avatar maxui-big">\
-                  <img src="{{avatar}}">\
+                    <img src="{{avatar}}">\
               </span>\
               <div id="maxui-newactivity-box">\
-                   <div class="maxui-wrapper">\
-                       <textarea class="maxui-empty maxui-text-input" data-literal="{{textLiteral}}">{{textLiteral}}</textarea>\
-                       <div class="maxui-error-box"></div>\
-                   </div>\
-        \
-                   <input disabled="disabled" type="button" class="maxui-button maxui-disabled" value="{{buttonLiteral}}">\
-              </div>\
-            '),
+                <div class="maxui-wrapper">\
+                   <textarea class="maxui-empty maxui-text-input" data-literal="{{textLiteral}}">{{textLiteral}}</textarea>\
+                   <div class="maxui-error-box"></div>\
+                </div>\
+                <div id="chat-preview" style="display: none;"></div>\
+                <label for="maxuichat-file" class="chat-upload-file" style="display: none;">{{fileLiteral}}</label>\
+                <input type="file" id="maxuichat-file" class="maxuichat-file-image" accept="file/*" style="display:none">\
+                <label for="maxuichat-img" class="chat-upload-img" style="display: none;">{{imgLiteral}}</label>\
+                <input type="file" id="maxuichat-img" class="maxuichat-file-image" accept="image/*" style="display:none">\
+                <input disabled="disabled" type="button" class="maxui-button maxui-disabled" value="{{buttonLiteral}}">\
+              </div>    '),
         predictive: Hogan.compile('\
 <li data-username="{{username}}" data-displayname="{{displayName}}" class="{{cssclass}}">\
         <img src="{{avatarURL}}"/><span>{{displayName}}</span>\

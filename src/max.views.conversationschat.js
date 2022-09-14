@@ -112,9 +112,9 @@ var max = max || {};
             var self = this;
             self.mainview.loadWrappers();
             self.mainview.$newparticipants.show();
-            jq('#maxui-newactivity-box > .upload-file').hide();
-            jq('#maxui-newactivity-box > .upload-img').hide();
-            jq('#maxui-newactivity-box > #preview').hide();
+            jq('#maxui-newactivity-box > .chat-upload-file').hide();
+            jq('#maxui-newactivity-box > .chat-upload-img').hide();
+            jq('#maxui-newactivity-box > #chat-preview').hide();
             // Load conversations from max if never loaded
             if (self.conversations.length === 0) {
                 self.load();
@@ -477,16 +477,16 @@ var max = max || {};
             self.mainview.loadWrappers();
             // PLEASE CLEAN THIS SHIT
             var $button = jq('#maxui-newactivity').find('input.maxui-button');
-            jq("#preview").empty();
-            jq("#maxui-img").val("");
-            jq("#maxui-file").val("");
-            jq("#maxui-newactivity-box > .upload-img").removeClass("label-disabled");
-            jq("#maxui-img").prop("disabled", false);
-            jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
-            jq("#maxui-file").prop("disabled", false);
-            jq('#maxui-newactivity-box > .upload-file').show();
-            jq('#maxui-newactivity-box > .upload-img').show();
-            jq('#maxui-newactivity-box > #preview').show();
+            jq("#chat-preview").empty();
+            jq("#maxuichat-img").val("");
+            jq("#maxuichat-file").val("");
+            jq("#maxui-newactivity-box > .chat-upload-img").removeClass("label-disabled");
+            jq("#maxuichat-img").prop("disabled", false);
+            jq("#maxui-newactivity-box > .chat-upload-file").removeClass("label-disabled");
+            jq("#maxuichat-file").prop("disabled", false);
+            jq('#maxui-newactivity-box > .chat-upload-file').show();
+            jq('#maxui-newactivity-box > .chat-upload-img').show();
+            jq('#maxui-newactivity-box > #chat-preview').show();
             $button.attr('class', 'maxui-button');
             self.mainview.$newmessagebox.find('textarea').attr('class', 'maxui-text-input');
             self.mainview.$newmessagebox.find('.maxui-error-box').animate({
@@ -609,6 +609,9 @@ var max = max || {};
                 event.stopPropagation();
                 window.status = '';
                 self.listview.show();
+                jq('#maxui-newactivity-box > .chat-upload-file').hide();
+                jq('#maxui-newactivity-box > .chat-upload-img').hide();
+                jq('#maxui-newactivity-box > #chat-preview').hide();
             });
             //Assign activation of messages section by delegating the clicl of a conversation arrow to the conversations container
             jq('#maxuichat-widget-container #maxui-conversations').on('click', '.maxui-conversation', function(event) {
@@ -684,15 +687,15 @@ var max = max || {};
                     type: media.type
                 }), media.name);
                 var callback = (function() {
-                    jq('#maxui-newactivity textarea').val('');
+                    jq('#maxui-newactivity-chat textarea').val('');
                     jq('#maxui-newactivity .maxui-button').attr('disabled', 'disabled');
-                    jq("#preview").empty();
-                    jq("#maxui-img").val("");
-                    jq("#maxui-file").val("");
-                    jq("#maxui-newactivity-box > .upload-img").removeClass("label-disabled");
-                    jq("#maxui-img").prop("disabled", false);
-                    jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
-                    jq("#maxui-file").prop("disabled", false);
+                    jq("#chat-preview").empty();
+                    jq("#maxuichat-img").val("");
+                    jq("#maxuichat-file").val("");
+                    jq("#maxui-newactivity-box > .chat-upload-img").removeClass("label-disabled");
+                    jq("#maxuichat-img").prop("disabled", false);
+                    jq("#maxui-newactivity-box > .chat-upload-file").removeClass("label-disabled");
+                    jq("#maxuichat-file").prop("disabled", false);
                 });
                 self.maxui.maxClient.POSTFILE(route, formData, callback);
                 setTimeout(function() {
