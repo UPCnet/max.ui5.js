@@ -487,6 +487,7 @@ var max = max || {};
             jq('#maxui-newactivity-box > .chat-upload-file').show();
             jq('#maxui-newactivity-box > .chat-upload-img').show();
             jq('#maxui-newactivity-box > #chat-preview').show();
+            self.maxui.loadPreviewRenderChat();
             $button.attr('class', 'maxui-button');
             self.mainview.$newmessagebox.find('textarea').attr('class', 'maxui-text-input');
             self.mainview.$newmessagebox.find('.maxui-error-box').animate({
@@ -659,8 +660,8 @@ var max = max || {};
                     'published': sent.published,
                     'user': sent.user.username
                 });
-                jq('#maxui-newactivity textarea').val('');
-                jq('#maxui-newactivity .maxui-button').attr('disabled', 'disabled');
+                jq('#maxui-newactivity-chat textarea').val('');
+                jq('#maxui-newactivity-chat .maxui-button').attr('disabled', 'disabled');
             } else {
                 if (media.type.split('/')[0] === 'image') {
                     query = {
@@ -688,7 +689,7 @@ var max = max || {};
                 }), media.name);
                 var callback = (function() {
                     jq('#maxui-newactivity-chat textarea').val('');
-                    jq('#maxui-newactivity .maxui-button').attr('disabled', 'disabled');
+                    jq('#maxui-newactivity-chat .maxui-button').attr('disabled', 'disabled');
                     jq("#chat-preview").empty();
                     jq("#maxuichat-img").val("");
                     jq("#maxuichat-file").val("");

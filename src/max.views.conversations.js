@@ -487,6 +487,7 @@ var max = max || {};
             jq('#maxui-newactivity-box > .upload-file').show();
             jq('#maxui-newactivity-box > .upload-img').show();
             jq('#maxui-newactivity-box > #preview').show();
+            self.maxui.loadPreviewRender();
             $button.attr('class', 'maxui-button');
             self.mainview.$newmessagebox.find('textarea').attr('class', 'maxui-text-input');
             self.mainview.$newmessagebox.find('.maxui-error-box').animate({
