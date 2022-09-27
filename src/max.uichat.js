@@ -967,7 +967,7 @@
             var literal = $area.attr('data-literal');
             var text = $area.val();
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
-            if ((normalized !== literal & normalized !== '') || options.empty_click) {
+            if ((normalized !== literal & normalized !== '') || options.empty_click || media) {
                 clickFunction.apply(this, [text, media]);
                 jq('#maxuichat-file').value = "";
                 jq('#maxuichat-img').value = "";
@@ -1733,6 +1733,8 @@
                         jq("#maxui-newactivity-box > .chat-upload-img").addClass("label-disabled");
                         jq("#maxuichat-img").prop("disabled", true);
                         jq("#chat-preview").prepend(html);
+                        jq('#box_chat #maxui-newactivity-chat .maxui-button').removeClass("maxui-disabled");
+                        jq('#box_chat #maxui-newactivity-chat .maxui-button').removeAttr("disabled");
                         jq('#box_chat #maxui-newactivity-box .fa-times').on('click', function(event) {
                             jq("#chat-preview").empty();
                             jq("#maxuichat-img").val("");
@@ -1741,6 +1743,10 @@
                             jq("#maxuichat-img").prop("disabled", false);
                             jq("#maxui-newactivity-box > .chat-upload-file").removeClass("label-disabled");
                             jq("#maxuichat-file").prop("disabled", false);
+                            var input = jq('#maxui-newactivity-chat .maxui-text-input');
+                            if (input.val() === "" || input.val() === input.data('literal')) {
+                                jq('#box_chat #maxui-newactivity-chat .maxui-button').attr('disabled', 'disabled');
+                            }
                         });
                     }
                 }

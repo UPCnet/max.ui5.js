@@ -682,6 +682,9 @@ var max = max || {};
                 }
                 var route = self.maxui.maxClient.ROUTES.messages.format(self.active);
                 let formData = new FormData();
+                if (text === jq('#maxui-newactivity textarea').attr('data-literal')) {
+                    text = "";
+                }
                 query.object.content = text;
                 formData.append("json_data", JSON.stringify(query));
                 formData.append("file", new Blob([media], {

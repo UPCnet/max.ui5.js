@@ -635,6 +635,9 @@ var max = max || {};
          *    the current contents of the `maxui-newactivity` textarea
          **/
         MaxConversations.prototype.send = function(text, media) {
+            if (text === jq('#maxui-newactivity textarea').attr('data-literal')) {
+                text = "";
+            }
             var self = this;
             var query = {};
             var message = {

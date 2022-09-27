@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.1.5';
+        maxui.version = '5.1.6';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -954,7 +954,7 @@
             var literal = $area.attr('data-literal');
             var text = $area.val();
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
-            if ((normalized !== literal & normalized !== '') || options.empty_click) {
+            if ((normalized !== literal & normalized !== '') || options.empty_click || media) {
                 clickFunction.apply(this, [text, media]);
                 jq('#maxui-file').value = "";
                 jq('#maxui-img').value = "";
@@ -1347,6 +1347,9 @@
     jq.fn.sendActivity = function(text, media) {
         var maxui = this;
         text = jq('#maxui-newactivity textarea').val();
+        if (text === jq('#maxui-newactivity textarea').attr('data-literal')) {
+            text = "";
+        }
         var func_params = [];
         // change to recent view before posting
         jq('#maxui-activity-sort .maxui-sort-action.active').toggleClass('active', false);
@@ -1756,6 +1759,8 @@
                         jq("#maxui-newactivity-box > .upload-img").addClass("label-disabled");
                         jq("#maxui-img").prop("disabled", true);
                         jq("#preview").prepend(html);
+                        jq('#maxui-newactivity-box .maxui-button').removeClass("maxui-disabled");
+                        jq('#maxui-newactivity-box .maxui-button').removeAttr("disabled");
                         jq('#maxui-newactivity-box .fa-times').on('click', function(event) {
                             jq("#preview").empty();
                             jq("#maxui-img").val("");
@@ -1764,6 +1769,10 @@
                             jq("#maxui-img").prop("disabled", false);
                             jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
                             jq("#maxui-file").prop("disabled", false);
+                            var input = jq('#maxui-newactivity .maxui-text-input');
+                            if (input.val() === "" || input.val() === input.data('literal')) {
+                                jq('#maxui-newactivity .maxui-button').attr('disabled', 'disabled');
+                            }
                         });
                     }
                 }
