@@ -475,7 +475,6 @@ var max = max || {};
         MaxConversationMessages.prototype.show = function(conversation_hash) {
             var self = this;
             self.mainview.loadWrappers();
-            // PLEASE CLEAN THIS SHIT
             var $button = jq('#maxui-newactivity').find('input.maxui-button');
             jq("#preview").empty();
             jq("#maxui-img").val("");
@@ -493,7 +492,6 @@ var max = max || {};
                 'margin-top': -26
             }, 200);
             self.mainview.$newparticipants.hide();
-            // UNTIL HERE
             self.mainview.active = conversation_hash;
             self.mainview.listview.resetUnread(conversation_hash);
             // Load conversation messages from max if never loaded

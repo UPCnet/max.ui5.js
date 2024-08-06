@@ -6,9 +6,9 @@
                <textarea class="maxui-empty maxui-text-input" data-literal="{{textLiteral}}">{{textLiteral}}</textarea>
                <div class="maxui-error-box"></div>
            </div>
-
             {{#showSubscriptionList}}
             <select id="maxui-subscriptions">
+              <option disabled selected value>{{selectCommunityLiteral}}</option>
               {{#subscriptionList}}
                 <option value="{{hash}}">{{displayname}}</option>
               {{/subscriptionList}}
