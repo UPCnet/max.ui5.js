@@ -974,7 +974,7 @@
             var button = jq(selector).parent().parent().find('.maxui-button');
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
             if (!options.ignore_button && jq(this).val() && maxui.settings.canwrite) {
-                if ((normalized !== '' && normalized !== literal) || jq(selector + " #maxui-file").val() || jq(selector + " #maxui-img").val()) {
+                if ((normalized !== '' && normalized !== literal) || jq(delegate + " #maxui-file").val() || jq(delegate + " #maxui-img").val()) {
                     jq(button).removeAttr('disabled');
                     jq(button).attr('class', 'maxui-button');
                     jq(selector).attr('class', 'maxui-text-input');
@@ -1789,8 +1789,6 @@
                             jq('#maxui-newactivity-box .maxui-button').removeClass("maxui-disabled");
                             jq('#maxui-newactivity-box .maxui-button').removeAttr("disabled");
                         }
-                        jq('#maxui-newactivity-box .maxui-button').removeClass("maxui-disabled");
-                        jq('#maxui-newactivity-box .maxui-button').removeAttr("disabled");
                         jq('#maxui-newactivity-box .fa-times').on('click', function(event) {
                             jq("#preview").empty();
                             jq("#maxui-img").val("");
