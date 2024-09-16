@@ -377,6 +377,7 @@ max.templates = function() {
         \
                     {{#showSubscriptionList}}\
                     <select id="maxui-subscriptions">\
+                      <option disabled selected value>{{selectCommunityLiteral}}</option>\
                       {{#subscriptionList}}\
                         <option value="{{hash}}">{{displayname}}</option>\
                       {{/subscriptionList}}\

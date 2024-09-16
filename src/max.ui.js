@@ -11,7 +11,7 @@
     jq.fn.maxUI = function(options) {
         // Keep a reference of the context object
         var maxui = this;
-        maxui.version = '5.1.6';
+        maxui.version = '5.1.7';
         maxui.templates = max.templates();
         maxui.utils = max.utils();
         var defaults = {
@@ -898,7 +898,7 @@
             var text = jq(this).val();
             var button = jq(this).parent().parent().find('.maxui-button');
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
-            if ((jq('#maxui-newactivity #maxui-subscriptions').val() === null || normalized === '') && !options.ignore_button ) {
+            if ((jq('#maxui-newactivity #maxui-subscriptions').val() === null || normalized === '') && !options.ignore_button) {
                 jq(button).attr('disabled', 'disabled');
                 jq(button).attr('class', 'maxui-button maxui-disabled');
                 jq(this).attr('class', 'maxui-empty maxui-text-input');
@@ -954,7 +954,7 @@
             var literal = $area.attr('data-literal');
             var text = $area.val();
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
-            if ((normalized !== literal & normalized !== ''& jq('#maxui-newactivity #maxui-subscriptions').val() !== null) || options.empty_click || media) {
+            if ((normalized !== literal & normalized !== '' & jq('#maxui-newactivity #maxui-subscriptions').val() !== null) || options.empty_click || media) {
                 clickFunction.apply(this, [text, media]);
                 jq('#maxui-file').value = "";
                 jq('#maxui-img').value = "";
@@ -972,7 +972,7 @@
             var literal = $area.attr('data-literal');
             var button = jq(selector).parent().parent().find('.maxui-button');
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
-            if ((jq(this).val() === null || normalized === '' || normalized === literal) && !options.ignore_button ) {
+            if ((jq(this).val() === null || normalized === '' || normalized === literal) && !options.ignore_button) {
                 jq(button).attr('disabled', 'disabled');
                 jq(button).attr('class', 'maxui-button maxui-disabled');
                 jq(selector).attr('class', 'maxui-empty maxui-text-input');
