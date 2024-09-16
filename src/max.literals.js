@@ -66,7 +66,8 @@ max.literals = function(language) {
         'flagged_activity': "Flagged activity",
         'recent_favorited_activity': "Latest favorites",
         'valued_favorited_activity': "Most valued favorites",
-        'open_profile': "Show profile"
+        'open_profile': "Show profile",
+        'select_community': 'Select a community'
     };
     maxui.es = {
         'cancel': 'Cancelar',
@@ -129,7 +130,8 @@ max.literals = function(language) {
         'flagged_activity': "Actividades destacadas",
         'recent_favorited_activity': "Últimas favoritas",
         'valued_favorited_activity': "Favoritas más valoradas",
-        'open_profile': "Ver el perfil"
+        'open_profile': "Ver el perfil",
+        'select_community': 'Selecciona una comunidad'
     };
     maxui.ca = {
         'cancel': 'Cancelar',
@@ -192,7 +194,8 @@ max.literals = function(language) {
         'flagged_activity': "Activitats destacades",
         'recent_favorited_activity': "Darreres favorites",
         'valued_favorited_activity': "Favorites més valorades",
-        'open_profile': "Veure el perfil"
+        'open_profile': "Veure el perfil",
+        'select_community': 'Selecciona una comunitat'
     };
     return maxui[language];
 };

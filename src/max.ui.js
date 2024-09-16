@@ -898,7 +898,7 @@
             var text = jq(this).val();
             var button = jq(this).parent().parent().find('.maxui-button');
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
-            if (normalized === '' && !options.ignore_button) {
+            if ((jq('#maxui-newactivity #maxui-subscriptions').val() === null || normalized === '') && !options.ignore_button ) {
                 jq(button).attr('disabled', 'disabled');
                 jq(button).attr('class', 'maxui-button maxui-disabled');
                 jq(this).attr('class', 'maxui-empty maxui-text-input');
@@ -954,7 +954,7 @@
             var literal = $area.attr('data-literal');
             var text = $area.val();
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
-            if ((normalized !== literal & normalized !== '') || options.empty_click || media) {
+            if ((normalized !== literal & normalized !== ''& jq('#maxui-newactivity #maxui-subscriptions').val() !== null) || options.empty_click || media) {
                 clickFunction.apply(this, [text, media]);
                 jq('#maxui-file').value = "";
                 jq('#maxui-img').value = "";
@@ -962,6 +962,30 @@
                 jq("#maxui-img").prop("disabled", false);
                 jq("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
                 jq("#maxui-file").prop("disabled", false);
+            }
+        });
+        jq(delegate).on('change', '#maxui-subscriptions', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            var text = jq(selector).val();
+            var $area = jq(selector).parent().find('.maxui-text-input');
+            var literal = $area.attr('data-literal');
+            var button = jq(selector).parent().parent().find('.maxui-button');
+            var normalized = maxui.utils.normalizeWhiteSpace(text, false);
+            if ((jq(this).val() === null || normalized === '' || normalized === literal) && !options.ignore_button ) {
+                jq(button).attr('disabled', 'disabled');
+                jq(button).attr('class', 'maxui-button maxui-disabled');
+                jq(selector).attr('class', 'maxui-empty maxui-text-input');
+                jq(selector).removeAttr('title');
+            } else {
+                if (maxui.settings.canwrite && !options.ignore_button) {
+                    jq(button).removeAttr('disabled');
+                    jq(button).attr('class', 'maxui-button');
+                    jq(selector).attr('class', 'maxui-text-input');
+                }
+            }
+            if (extra_bind !== null) {
+                extra_bind(text, this, button, event);
             }
         });
     };
@@ -1702,6 +1726,7 @@
             allowPosting: maxui.settings.canwrite,
             buttonLiteral: maxui.settings.literals.new_activity_post,
             textLiteral: maxui.settings.literals.new_activity_text,
+            selectCommunityLiteral: maxui.settings.literals.select_community,
             imgLiteral: maxui.settings.literals.new_img_post,
             fileLiteral: maxui.settings.literals.new_file_post,
             literals: maxui.settings.literals,
@@ -1759,6 +1784,10 @@
                         jq("#maxui-newactivity-box > .upload-img").addClass("label-disabled");
                         jq("#maxui-img").prop("disabled", true);
                         jq("#preview").prepend(html);
+                        if (jq('#maxui-newactivity-box #maxui-subscriptions').val() !== null) {
+                            jq('#maxui-newactivity-box .maxui-button').removeClass("maxui-disabled");
+                            jq('#maxui-newactivity-box .maxui-button').removeAttr("disabled");
+                        }
                         jq('#maxui-newactivity-box .maxui-button').removeClass("maxui-disabled");
                         jq('#maxui-newactivity-box .maxui-button').removeAttr("disabled");
                         jq('#maxui-newactivity-box .fa-times').on('click', function(event) {
@@ -1770,7 +1799,7 @@
                             jq("#maxui-newactivity-box > .upload-file").removeClass("label-disabled");
                             jq("#maxui-file").prop("disabled", false);
                             var input = jq('#maxui-newactivity .maxui-text-input');
-                            if (input.val() === "" || input.val() === input.data('literal')) {
+                            if (input.val() === "" || input.val() === input.data('literal') || jq('#maxui-newactivity-box #maxui-subscriptions').val() === null) {
                                 jq('#maxui-newactivity .maxui-button').attr('disabled', 'disabled');
                             }
                         });
