@@ -898,7 +898,7 @@
             var text = jq(this).val();
             var button = jq(this).parent().parent().find('.maxui-button');
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
-            if ((jq('#maxui-newactivity #maxui-subscriptions').val() === null || normalized === '') && !options.ignore_button) {
+            if (((jq(this).attr('id') !== 'maxui-commentBox' && jq('#maxui-newactivity #maxui-subscriptions').val() === null) || normalized === '') && !options.ignore_button) {
                 jq(button).attr('disabled', 'disabled');
                 jq(button).attr('class', 'maxui-button maxui-disabled');
                 jq(this).attr('class', 'maxui-empty maxui-text-input');
