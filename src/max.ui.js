@@ -963,9 +963,6 @@
                     jq("#maxui-img").prop("disabled", false);
                     jq("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
                     jq("#maxui-file").prop("disabled", false);
-                    if (jq(this).parent().attr('id') === 'maxui-newactivity-box') {
-                        jq('#maxui-newactivity #maxui-subscriptions').val('');
-                    }
                 }
             }
         });
