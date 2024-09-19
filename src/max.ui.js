@@ -955,7 +955,7 @@
             var text = $area.val();
             var normalized = maxui.utils.normalizeWhiteSpace(text, false);
             if ((normalized !== literal && normalized !== '') || options.empty_click || media) {
-                if ((jq(this).parent().attr('id') == 'maxui-newactivity-box' && jq('#maxui-newactivity #maxui-subscriptions').val() !== null) || jq(this).parent().hasClass('maxui-newcommentbox')) {
+                if ((jq(this).parent().attr('id') === 'maxui-newactivity-box' && jq('#maxui-newactivity #maxui-subscriptions').val() !== null) || jq(this).parent().hasClass('maxui-newcommentbox')) {
                     clickFunction.apply(this, [text, media]);
                     jq('#maxui-file').value = "";
                     jq('#maxui-img').value = "";
@@ -963,7 +963,7 @@
                     jq("#maxui-img").prop("disabled", false);
                     jq("#maxui-newactivity-box > .upload-file").removeClass('label-disabled');
                     jq("#maxui-file").prop("disabled", false);
-                    if (jq(this).parent().attr('id') == 'maxui-newactivity-box') {
+                    if (jq(this).parent().attr('id') === 'maxui-newactivity-box') {
                         jq('#maxui-newactivity #maxui-subscriptions').val('');
                     }
                 }
