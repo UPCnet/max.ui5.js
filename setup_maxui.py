@@ -61,28 +61,28 @@ def main():
     # Setup configuration parameters
     # User will be asked if not setted
 
-    print
+    print()
     config = getConfiguration()
 
     if 'fonts_url' not in config:
-        fonts_url = raw_input("Fonts base_url ['{}']: ".format(DEFAULT_MAXUI_FONTS_URL))
+        fonts_url = input("Fonts base_url ['{}']: ".format(DEFAULT_MAXUI_FONTS_URL))
         fonts_url = fonts_url.strip()
         fonts_url = fonts_url.rstrip('/')
         config['fonts_url'] = fonts_url if fonts_url else DEFAULT_MAXUI_FONTS_URL
 
     if 'fonts_location' not in config:
-        fonts_url = raw_input("Font files location ['{}']: ".format(DEFAULT_MAXUI_FONTS_FOLDER))
+        fonts_url = input("Font files location ['{}']: ".format(DEFAULT_MAXUI_FONTS_FOLDER))
         fonts_url = fonts_url.strip()
         fonts_url = fonts_url.rstrip('/')
         config['fonts_location'] = fonts_url if fonts_url else DEFAULT_MAXUI_FONTS_FOLDER
 
     if 'js_location' not in config:
-        js_location = raw_input("Javascript file location ['{}']: ".format(DEFAULT_MAXUI_JS))
+        js_location = input("Javascript file location ['{}']: ".format(DEFAULT_MAXUI_JS))
         js_location = js_location.strip()
         config['js_location'] = js_location if js_location else DEFAULT_MAXUI_JS
 
     if 'css_location' not in config:
-        css_location = raw_input("Stylesheet file location ['{}']: ".format(DEFAULT_MAXUI_CSS))
+        css_location = input("Stylesheet file location ['{}']: ".format(DEFAULT_MAXUI_CSS))
         css_location = css_location.strip()
         config['css_location'] = css_location if css_location else DEFAULT_MAXUI_CSS
 
@@ -92,14 +92,14 @@ def main():
 
     js = downloadFile(config, 'builds/{}/maxui.min.js'.format(version))
     if not js:
-        print ' MAX UI Version {} build not found'.format(version)
+        print(' MAX UI Version {} build not found'.format(version))
         sys.exit(1)
     # Store downloaded js
     open(config['js_location'], 'w').write(js)
 
     js = downloadFile(config, 'builds/{}/maxui.min.js.map'.format(version))
     if not js:
-        print ' MAX UI jsmap Version {} build not found'.format(version)
+        print(' MAX UI jsmap Version {} build not found'.format(version))
         sys.exit(1)
     # Store downloaded js map
     fname = config['js_location'].split('.js')[0]
@@ -107,7 +107,7 @@ def main():
 
     js = downloadFile(config, 'builds/{}/maxui.js'.format(version))
     if not js:
-        print ' MAX UI js source Version {} build not found'.format(version)
+        print(' MAX UI js source Version {} build not found'.format(version))
         sys.exit(1)
     # Store downloaded js source for map
     path = '/'.join(config['js_location'].split('/')[:-1])
@@ -136,7 +136,7 @@ def main():
     #     imagebytes = downloadFile(config, 'img/' + image)
     #     open(config['images_location'] + '/' + unquote(image), 'w').write(imagebytes)
 
-    print '\n MAX UI {} setup finished\n'.format(version)
+    print('\n MAX UI {} setup finished\n'.format(version))
 
 if __name__ == "__main__":
     main()
